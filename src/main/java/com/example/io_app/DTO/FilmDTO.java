@@ -12,14 +12,14 @@ public class FilmDTO {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getGenre() {
-        return genre;
+        return this.genre;
     }
 
     public int getDuration() {
-        return duration;
+        return this.duration;
     }
 }

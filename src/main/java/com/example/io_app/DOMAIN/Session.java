@@ -45,7 +45,7 @@ public class Session {
 
         return "Seans {" +
                 "id = " + id +
-                ", tytuł = " + film.getName() +
+                ", tytuł = " + film.getTitle() +
                 ", sala = " + roomNumber +
                 ", początek = " + startTime.format(start) +
                 ", koniec = " + endTime.format(end) +

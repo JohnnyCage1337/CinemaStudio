@@ -2,7 +2,7 @@ package com.example.io_app.DOMAIN;
 
 public class FilmValidator {
     public void validate(Film film) {
-        if (film.getName() == null || film.getName().isEmpty()) {
+        if (film.getTitle() == null || film.getTitle().isEmpty()) {
             throw new IllegalArgumentException("Invalid movie title");
         }
         if (film.getGenre() == null || film.getGenre().isEmpty()) {

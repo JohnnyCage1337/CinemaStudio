@@ -1,49 +1,46 @@
 package com.example.io_app.DOMAIN;
 
+import com.example.io_app.INFRASTRUCTURE.FilmRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class FilmManager {
 
-    private static List<Film> films;
+    private FilmRepository filmRepository;
 
     public FilmManager(){
-
+        filmRepository = new FilmRepository();
     }
 
-    public static Film createFilm(String name, int duration, String description, String genre, String rate, String director, String language){
-        Film film = new Film(name, duration, description, genre, rate, director, language);
-        films.add(film);
+    public Film createFilm(String title, String genre, int duration){
+        Film film = new Film(title, genre, duration);
         return film;
     }
 
-    public static Film readFilmByName(String name) {
-        return films.stream()
-                .filter(film -> film.getName().equalsIgnoreCase(name))
+    public  Film readFilmByName(String title) {
+        return filmRepository.getFilms().stream()
+                .filter(film -> film.getTitle().equalsIgnoreCase(title))
                 .findFirst()
                 .orElse(null);
     }
 
-    public static List<Film> readAllFilms() {
-        return new ArrayList<>(films);
+    public List<Film> readAllFilms() {
+        return new ArrayList<>(filmRepository.getFilms());
     }
 
-    public static boolean updateFilm(String name, int duration, String description, String genre, String rate, String director, String language) {
-        Film film = readFilmByName(name);
+    public boolean updateFilm(String title, int duration, String description, String genre, String rate, String director, String language) {
+        Film film = readFilmByName(title);
         if (film != null) {
             film.setDuration(duration);
-            film.setDescription(description);
             film.setGenre(genre);
-            film.setRate(rate);
-            film.setDirector(director);
-            film.setLanguage(language);
             return true;
         }
         return false;
     }
 
-    public static boolean deleteFilm(String name) {
-        return films.removeIf(film -> film.getName().equalsIgnoreCase(name));
+    public boolean deleteFilm(String title) {
+        return filmRepository.getFilms().removeIf(film -> film.getTitle().equalsIgnoreCase(title));
     }
 
 

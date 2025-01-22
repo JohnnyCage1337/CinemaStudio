@@ -59,7 +59,7 @@ public class SessionManager {
 
     public static List<Session> findSessionsByFilmTitle(String title) {
         return sessions.stream()
-                .filter(session -> session.getFilm().getName().equalsIgnoreCase(title))
+                .filter(session -> session.getFilm().getTitle().equalsIgnoreCase(title))
                 .collect(Collectors.toList());
     }
 

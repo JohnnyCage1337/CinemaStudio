@@ -1,11 +1,11 @@
-package com.example.io_app.DTO;
+package com.example.io_app.CONTRACTS;
 
 
 import com.example.io_app.DOMAIN.Film;
 
 import java.util.List;
 
-public interface FilmRepositiry {
+public interface FilmRepository {
     void save(Film movie);
     List<Film> findAll();
 }

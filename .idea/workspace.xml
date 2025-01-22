@@ -5,16 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac4fa122-6007-4f23-8db0-067442b8bfb9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/Films/FilmService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/FilmValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FilmRepositiry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MoviesManagmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MoviesManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/Films/FilmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/Films/FilmService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/FilmManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/FilmManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/FilmValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/FilmValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/SessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FilmDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FilmDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/SessionDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FilmRepositiry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MoviesManagement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MoviesManagement.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -40,8 +47,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/JohnnyCage1337/IO_StudioCinema.git&quot;,
-    &quot;accountId&quot;: &quot;bfff6746-4f2f-48a0-aea1-9c8b11a5d59f&quot;
+    &quot;url&quot;: &quot;https://github.com/JohnnyCage1337/CinemaStudio.git&quot;,
+    &quot;accountId&quot;: &quot;980ef4a3-09d5-440e-b0e3-0e2d3e3e6520&quot;
   }
 }</component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -69,10 +76,10 @@
     "Application.HelloApplication.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "wiktor",
+    "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-23",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/micro/IdeaProjects/IO_APP",
+    "last_opened_file_path": "C:/Users/Lenovo/Java/CinemaStudio",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -91,13 +98,20 @@
       <recent name="com.example.io_app" />
     </key>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
-      </set>
-    </attachedChunks>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="StudioCinema" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="StudioCinema" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
