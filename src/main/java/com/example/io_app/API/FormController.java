@@ -64,7 +64,7 @@ public class FormController {
 
         System.out.println("Dodano film: " + title + ", gatunek: " + genre + ", czas trwania: " + duration);
 
-        for(Film film : filmRepository.getFilms()){
+        for(Film film : filmRepository.findAll()){
             System.out.println(film);
         }
 

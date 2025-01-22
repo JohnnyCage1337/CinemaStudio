@@ -8,6 +8,7 @@ module com.example.io_app {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens com.example.io_app to javafx.fxml;
     exports com.example.io_app.API;

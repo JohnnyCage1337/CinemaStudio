@@ -14,7 +14,7 @@ public class Main {
 
         FilmRepository filmRepository = new FilmRepository();
 
-        for(Film film : filmRepository.getFilms()){
+        for(Film film : filmRepository.findAll()){
             System.out.println(film);
         }
 

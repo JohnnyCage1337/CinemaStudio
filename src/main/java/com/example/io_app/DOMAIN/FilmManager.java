@@ -19,14 +19,14 @@ public class FilmManager {
     }
 
     public  Film readFilmByName(String title) {
-        return filmRepository.getFilms().stream()
+        return filmRepository.findAll().stream()
                 .filter(film -> film.getTitle().equalsIgnoreCase(title))
                 .findFirst()
                 .orElse(null);
     }
 
     public List<Film> readAllFilms() {
-        return new ArrayList<>(filmRepository.getFilms());
+        return new ArrayList<>(filmRepository.findAll());
     }
 
     public boolean updateFilm(String title, int duration, String description, String genre, String rate, String director, String language) {
@@ -40,7 +40,7 @@ public class FilmManager {
     }
 
     public boolean deleteFilm(String title) {
-        return filmRepository.getFilms().removeIf(film -> film.getTitle().equalsIgnoreCase(title));
+        return filmRepository.findAll().removeIf(film -> film.getTitle().equalsIgnoreCase(title));
     }
 
 
