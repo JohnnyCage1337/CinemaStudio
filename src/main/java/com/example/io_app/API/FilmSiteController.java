@@ -1,7 +1,7 @@
 package com.example.io_app.API;
 
 import com.example.io_app.DOMAIN.Film;
-import com.example.io_app.FindingFilmController;
+import com.example.io_app.API.FindingFilmController;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
