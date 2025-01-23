@@ -62,11 +62,11 @@ public class FormController {
         FilmService filmService = new FilmService(filmRepository);
         filmService.createAndSaveFilm(filmDTO);
 
-        System.out.println("Dodano film: " + title + ", gatunek: " + genre + ", czas trwania: " + duration);
+        /*System.out.println("Dodano film: " + title + ", gatunek: " + genre + ", czas trwania: " + duration);
 
         for(Film film : filmRepository.findAll()){
             System.out.println(film);
-        }
+        }*/
 
         if (onClose != null) {
             onClose.run(); // Wywołaj callback, np. odświeżenie tabeli

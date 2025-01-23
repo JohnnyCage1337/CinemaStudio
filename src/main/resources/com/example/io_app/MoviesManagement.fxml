@@ -33,14 +33,14 @@
       </HBox>
    </bottom>
    <center>
-      <TableView editable="true" BorderPane.alignment="CENTER">
+      <TableView fx:id="filmTableView" editable="true" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn prefWidth="75.0" text="ID filmu" />
-            <TableColumn prefWidth="75.0" text="Tytuł" />
-            <TableColumn prefWidth="120.66667175292969" text="Gatunek" />
-            <TableColumn prefWidth="117.33331298828125" text="Czas trwania" />
-            <TableColumn prefWidth="75.0" text="Reżyser" />
-            <TableColumn prefWidth="75.0" text="Reżyser" />
+            <!--<TableColumn prefWidth="75.0" text="ID filmu" />-->
+            <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Tytuł" />
+            <TableColumn fx:id="genreColumn" prefWidth="120.66667175292969" text="Gatunek" />
+            <TableColumn fx:id="durationColumn" prefWidth="117.33331298828125" text="Czas trwania" />
+            <!--<TableColumn prefWidth="75.0" text="Reżyser" />
+            <TableColumn prefWidth="75.0" text="Reżyser" />-->
          </columns>
       </TableView>
    </center>

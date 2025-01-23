@@ -1,17 +1,62 @@
 package com.example.io_app.API;
 
+import com.example.io_app.DOMAIN.Film;
+import com.example.io_app.INFRASTRUCTURE.FilmRepository;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class MoviesManagementController
+public class MoviesManagementController implements Initializable
 {
+    @FXML
+    private TableView<Film> filmTableView;
+
+    @FXML
+    private TableColumn<Film, String> titleColumn;
+
+    @FXML
+    private TableColumn<Film, String> genreColumn;
+
+    @FXML
+    private TableColumn<Film, Integer> durationColumn;
+
+    private FilmRepository filmRepository;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        filmRepository = new FilmRepository();
+
+        // Ustawienie cellValueFactory dla kolumn
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+
+        // Załaduj dane do TableView
+        loadFilmData();
+    }
+
+    private void loadFilmData() {
+        List<Film> films = filmRepository.findAll();
+        ObservableList<Film> observableFilms = FXCollections.observableArrayList(films);
+        filmTableView.setItems(observableFilms);
+    }
+
     @FXML
     public void swtichToFilmShowings(ActionEvent event) {
         try {
@@ -45,8 +90,8 @@ public class MoviesManagementController
             // Pobierz kontroler formularza i ustaw callback, jeśli potrzeba
             com.example.io_app.API.FormController formController = loader.getController();
             formController.setOnClose(() -> {
-                // Możesz tu np. odświeżyć tabelę
-                System.out.println("Zamknięto okno i można odświeżyć widok");
+                loadFilmData();
+                /*System.out.println("Zamknięto okno i można odświeżyć widok");*/
             });
 
             // Stwórz nowe okno (Stage)

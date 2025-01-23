@@ -11,6 +11,7 @@ module com.example.io_app {
     requires java.sql;
 
     opens com.example.io_app to javafx.fxml;
+    opens com.example.io_app.DOMAIN to javafx.base;
     exports com.example.io_app.API;
     opens com.example.io_app.API to javafx.fxml;
 }
