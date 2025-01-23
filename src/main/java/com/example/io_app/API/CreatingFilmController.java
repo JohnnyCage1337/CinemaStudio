@@ -1,7 +1,6 @@
 package com.example.io_app.API;
 
 import com.example.io_app.APPLICATION.Films.FilmService;
-import com.example.io_app.DOMAIN.Film;
 import com.example.io_app.DTO.FilmDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 import javafx.fxml.FXML;
@@ -10,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-public class FormController {
+public class CreatingFilmController {
 
     @FXML
     private TextField titleField;

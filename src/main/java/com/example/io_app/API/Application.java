@@ -1,13 +1,12 @@
 package com.example.io_app.API;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class Application extends javafx.application.Application {
 
     private static Stage mainStage;
 
@@ -20,7 +19,7 @@ public class HelloApplication extends Application {
         mainStage = stage;
 
         // Ładujemy plik FXML (zmień ścieżkę, jeśli masz inny układ katalogów)
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/SessionSite.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("FilmSchedule");

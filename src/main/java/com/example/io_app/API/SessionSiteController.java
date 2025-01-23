@@ -11,13 +11,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloController {
+public class SessionSiteController {
 
     @FXML
     public void switchToMoviesManagement(ActionEvent event) {
         try {
             // Wczytanie nowego pliku FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/MoviesManagement.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/FilmSite.fxml"));
             Parent root = fxmlLoader.load();
 
             // Pobranie bieżącego okna
