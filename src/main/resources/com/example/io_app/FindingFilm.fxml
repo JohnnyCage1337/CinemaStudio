@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.FindingFilm">
+   <children>
+      <TextField layoutX="189.0" layoutY="179.0" prefHeight="42.0" prefWidth="222.0" promptText="Wprowadź nazwę" />
+      <Text fill="#cb4343" fontSmoothingType="LCD" layoutX="140.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wyszukiwanie filmu po nazwie" textAlignment="CENTER" wrappingWidth="320.9453125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="240.0" layoutY="246.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Szukaj" />
+   </children>
+</AnchorPane>

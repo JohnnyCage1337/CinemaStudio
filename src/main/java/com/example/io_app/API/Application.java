@@ -22,7 +22,7 @@ public class Application extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/SessionSite.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("FilmSchedule");
+        stage.setTitle("Sessions");
         stage.setScene(scene);
         stage.show();
     }

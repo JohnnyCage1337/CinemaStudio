@@ -15,14 +15,14 @@
             <Button mnemonicParsing="false" onAction="#swtichToFilmShowings" prefWidth="125.0" text="Zarządzanie seansami" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="28.0" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="149.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="102.0" minWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </top>
    <bottom>
       <HBox prefHeight="51.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#openFormWindow" prefHeight="51.0" prefWidth="150.0" text="Dodaj film" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#openCreatingFilmWindow" prefHeight="51.0" prefWidth="150.0" text="Dodaj film" HBox.hgrow="ALWAYS" />
             <Region prefHeight="51.0" prefWidth="65.0" HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="149.0" text="Znajdź film" HBox.hgrow="ALWAYS" />
             <Region prefHeight="51.0 " prefWidth="70.0" HBox.hgrow="ALWAYS" />

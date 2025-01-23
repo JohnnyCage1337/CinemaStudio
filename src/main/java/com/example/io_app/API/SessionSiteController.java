@@ -14,7 +14,7 @@ import java.io.IOException;
 public class SessionSiteController {
 
     @FXML
-    public void switchToMoviesManagement(ActionEvent event) {
+    public void switchToFilmsManagement(ActionEvent event) {
         try {
             // Wczytanie nowego pliku FXML
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/FilmSite.fxml"));

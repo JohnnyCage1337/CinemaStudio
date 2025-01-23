@@ -2,6 +2,7 @@ package com.example.io_app.API;
 
 import com.example.io_app.DOMAIN.Film;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,7 +71,7 @@ public class FilmSiteController implements Initializable
 
             // Ustawienie nowej sceny w oknie
             stage.setScene(new Scene(root));
-            stage.setTitle("StudioCinema");
+            stage.setTitle("Sessions");
 
 
             stage.show();
@@ -80,7 +81,7 @@ public class FilmSiteController implements Initializable
     }
 
     @FXML
-    public void openFormWindow() {
+    public void openCreatingFilmWindow() {
         try {
             // Wczytaj FXML dla formularza
             FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/CreatingFilm.fxml"));
@@ -103,5 +104,11 @@ public class FilmSiteController implements Initializable
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void handleExitButton(ActionEvent event) {
+        // Zamyka aplikację
+        Platform.exit();
     }
 }

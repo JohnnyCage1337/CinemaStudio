@@ -12,12 +12,12 @@
    <top>
       <HBox prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToMoviesManagement" prefHeight="103.0" prefWidth="122.0" text="Zarządzanie filmami" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefWidth="125.0" text="Zarządzanie seansami" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#switchToFilmsManagement" prefHeight="103.0" minWidth="125.0" prefWidth="122.0" text="Zarządzanie filmami" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" prefWidth="125.0" minWidth="125.0"  text="Zarządzanie seansami" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="28.0" HBox.hgrow="ALWAYS" />
             <DatePicker prefHeight="25.0" prefWidth="174.0" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="149.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="102.0" minWidth="102.0" maxWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </top>
