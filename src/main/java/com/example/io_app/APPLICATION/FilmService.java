@@ -1,4 +1,4 @@
-package com.example.io_app.APPLICATION.Films;
+package com.example.io_app.APPLICATION;
 
 import com.example.io_app.DOMAIN.Film;
 import com.example.io_app.DOMAIN.FilmManager;

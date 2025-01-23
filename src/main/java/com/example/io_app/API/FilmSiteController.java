@@ -1,6 +1,7 @@
 package com.example.io_app.API;
 
 import com.example.io_app.DOMAIN.Film;
+import com.example.io_app.FindingFilmController;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -97,6 +98,31 @@ public class FilmSiteController implements Initializable
             // Stwórz nowe okno (Stage)
             Stage stage =  new Stage();
             stage.setTitle("Dodaj nowy film");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL); // Okno modalne
+            stage.initOwner(Application.getMainStage());
+            stage.showAndWait(); // Poczekaj na zamknięcie okna
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void openFindingFilmWindow() {
+        try {
+            // Wczytaj FXML dla formularza
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FindingFilm.fxml"));
+            Parent root = loader.load();
+
+            // Pobierz kontroler formularza i ustaw callback, jeśli potrzeba
+            FindingFilmController findingFilmController = loader.getController();
+            /*findingFilmController.setOnClose(() -> {
+                loadFilmData();
+            });*/
+
+            // Stwórz nowe okno (Stage)
+            Stage stage =  new Stage();
+            stage.setTitle("Znajdź film");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL); // Okno modalne
             stage.initOwner(Application.getMainStage());
