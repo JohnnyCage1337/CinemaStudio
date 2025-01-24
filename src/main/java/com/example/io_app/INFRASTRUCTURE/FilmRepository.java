@@ -78,26 +78,29 @@ public class FilmRepository {
     }
 
     // (Opcjonalnie) Szukanie filmu po tytule
-    public Film findByTitle(String titleToFind) {
+    public List<Film> findByTitle(String titleToFind) {
         String selectSql = "SELECT * FROM films WHERE LOWER(title) LIKE LOWER(?);";
+
+        List<Film> films = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(URL);
              PreparedStatement pstmt = connection.prepareStatement(selectSql)) {
 
             pstmt.setString(1, "%" + titleToFind + "%");
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
+                while (rs.next()) {
                     String title = rs.getString("title");
                     String genre = rs.getString("genre");
                     int duration = rs.getInt("duration");
-                    return new Film(title, genre, duration);
+
+                    films.add(new Film(title, genre, duration));
                 }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return films;
     }
 
     // (Opcjonalnie) Usuwanie filmu po tytule

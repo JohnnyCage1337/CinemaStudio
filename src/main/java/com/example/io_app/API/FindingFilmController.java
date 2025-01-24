@@ -18,16 +18,16 @@ public class FindingFilmController {
 
     @FXML
     public void searchFilm() {
-        String filmTitle = searchField.getText();
+        String filmTitleFragment = searchField.getText();
 
         // Logika wyszukiwania
         //sprawdzenie, czy pole nie jest puste
-        if (filmTitle == null || filmTitle.trim().isEmpty()) {
-            // ewentualnie Alert albo jakiś komunikat
+        if (filmTitleFragment == null || filmTitleFragment.trim().isEmpty()) {
+            // jakiś komunikat
             return;
         }
 
-        filmSiteController.searchAndDisplayFilm(filmTitle);
+        filmSiteController.searchAndDisplayFilm(filmTitleFragment);
         closeWindow();
     }
 

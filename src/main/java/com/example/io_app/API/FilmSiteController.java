@@ -140,15 +140,16 @@ public class FilmSiteController implements Initializable {
         }
     }
 
-    public void searchAndDisplayFilm(String filmTitle) {
-        Film foundFilm = filmRepository.findByTitle(filmTitle);
+    public void searchAndDisplayFilm(String filmTitleFragment) {
 
-        if (foundFilm != null) {
-            // utworzenie listy z 1 obiektem, jeśli znaleziono film
-            ObservableList<Film> singleFilmList = FXCollections.observableArrayList(foundFilm);
-            filmTableView.setItems(singleFilmList);
+        List<Film> foundFilms = filmRepository.findByTitle(filmTitleFragment);
+
+        if (foundFilms != null) {
+            // utworzenie listy z obiektami, jeśli znaleziono pasujące
+            ObservableList<Film> foundFilmList = FXCollections.observableArrayList(foundFilms);
+            filmTableView.setItems(foundFilmList);
         } else {
-            // Nic nie znaleziono - np. możesz wyświetlić alert lub wyczyścić tabelę
+            // Nic nie znaleziono - wyświetlić alert lub wyczyścić tabelę
             filmTableView.setItems(FXCollections.observableArrayList());
             // Lub:
             // showAlert("Brak wyników", "Nie znaleziono filmu o tytule: " + filmTitle);
