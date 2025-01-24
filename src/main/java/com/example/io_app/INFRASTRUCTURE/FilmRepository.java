@@ -79,12 +79,12 @@ public class FilmRepository {
 
     // (Opcjonalnie) Szukanie filmu po tytule
     public Film findByTitle(String titleToFind) {
-        String selectSql = "SELECT * FROM films WHERE LOWER(title) = LOWER(?);";
+        String selectSql = "SELECT * FROM films WHERE LOWER(title) LIKE LOWER(?);";
 
         try (Connection connection = DriverManager.getConnection(URL);
              PreparedStatement pstmt = connection.prepareStatement(selectSql)) {
 
-            pstmt.setString(1, titleToFind);
+            pstmt.setString(1, "%" + titleToFind + "%");
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     String title = rs.getString("title");
