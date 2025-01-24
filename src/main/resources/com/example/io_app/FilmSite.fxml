@@ -28,7 +28,7 @@
             <Region prefHeight="51.0 " prefWidth="70.0" HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="150.0" text="Edytuj film" HBox.hgrow="ALWAYS" />
             <Region prefHeight="51.0" prefWidth="70.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="150.0" text="Usuń film" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#deleteSelectedFilm" prefHeight="51.0" prefWidth="150.0" text="Usuń film" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </bottom>

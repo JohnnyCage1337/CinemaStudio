@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,6 +23,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class FilmSiteController implements Initializable {
@@ -103,6 +106,43 @@ public class FilmSiteController implements Initializable {
             stage.showAndWait(); // Poczekaj na zamknięcie okna
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void deleteSelectedFilm(){
+
+        Film selectedFilm = filmTableView.getSelectionModel().getSelectedItem();
+
+        // Obsługa braku zaznaczenia filmu
+        if (selectedFilm == null) {
+            Alert noSelectionAlert = new Alert(Alert.AlertType.INFORMATION);
+            noSelectionAlert.setTitle("Brak zaznaczenia");
+            noSelectionAlert.setHeaderText("Nie wybrano żadnego filmu do usunięcia");
+            noSelectionAlert.setContentText("Zaznacz film na liście, zanim klikniesz 'Usuń'.");
+            noSelectionAlert.showAndWait();
+            return;
+        }
+
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Potwierdź usunięcie");
+        confirmationAlert.setHeaderText("Czy na pewno chcesz usunąć wybrany film?");
+        confirmationAlert.setContentText("Film: " + selectedFilm.getTitle());
+
+        // Czekamy na odpowiedź użytkownika
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Użytkownik potwierdził usunięcie
+            boolean success = filmRepository.deleteByTitle(selectedFilm.getTitle());
+            if (success) {
+                // Jeśli usunięcie się powiodło, odśwież dane w tabeli
+                loadFilmData();
+            } else {
+                System.out.println("Nie udało się usunąć filmu: " + selectedFilm.getTitle());
+            }
+        } else {
+            // Użytkownik anulował usunięcie
+            System.out.println("Usunięcie filmu anulowane.");
         }
     }
 
