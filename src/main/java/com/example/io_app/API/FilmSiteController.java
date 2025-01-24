@@ -23,8 +23,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class FilmSiteController implements Initializable
-{
+public class FilmSiteController implements Initializable {
     @FXML
     private TableView<Film> filmTableView;
 
@@ -96,33 +95,8 @@ public class FilmSiteController implements Initializable
             });
 
             // Stwórz nowe okno (Stage)
-            Stage stage =  new Stage();
+            Stage stage = new Stage();
             stage.setTitle("Dodaj nowy film");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.WINDOW_MODAL); // Okno modalne
-            stage.initOwner(Application.getMainStage());
-            stage.showAndWait(); // Poczekaj na zamknięcie okna
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void openFindingFilmWindow() {
-        try {
-            // Wczytaj FXML dla formularza
-            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FindingFilm.fxml"));
-            Parent root = loader.load();
-
-            // Pobierz kontroler formularza i ustaw callback, jeśli potrzeba
-            FindingFilmController findingFilmController = loader.getController();
-            /*findingFilmController.setOnClose(() -> {
-                loadFilmData();
-            });*/
-
-            // Stwórz nowe okno (Stage)
-            Stage stage =  new Stage();
-            stage.setTitle("Znajdź film");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL); // Okno modalne
             stage.initOwner(Application.getMainStage());
@@ -137,4 +111,50 @@ public class FilmSiteController implements Initializable
         // Zamyka aplikację
         Platform.exit();
     }
+
+    @FXML
+    public void openFindingFilmWindow() {
+        try {
+            // Wczytaj FXML dla formularza
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FindingFilm.fxml"));
+            Parent root = loader.load();
+
+            // Pobranie kontrolera formularza i ew. ustawienie callback, jeśli potrzeba
+            FindingFilmController findingFilmController = loader.getController();
+            /*findingFilmController.setOnClose(() -> {
+                loadFilmData();
+            });*/
+
+            //przekazanie aktualnego kontrolera (strony głównej filmów) od dziecka - kontroler "Znajdź film"
+            findingFilmController.setFilmSiteController(this);
+
+            // Stwórz nowe okno (Stage)
+            Stage stage = new Stage();
+            stage.setTitle("Znajdź film");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL); // Okno modalne
+            stage.initOwner(Application.getMainStage());
+            stage.showAndWait(); // Poczekaj na zamknięcie okna
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void searchAndDisplayFilm(String filmTitle) {
+        Film foundFilm = filmRepository.findByTitle(filmTitle);
+
+        if (foundFilm != null) {
+            // utworzenie listy z 1 obiektem, jeśli znaleziono film
+            ObservableList<Film> singleFilmList = FXCollections.observableArrayList(foundFilm);
+            filmTableView.setItems(singleFilmList);
+        } else {
+            // Nic nie znaleziono - np. możesz wyświetlić alert lub wyczyścić tabelę
+            filmTableView.setItems(FXCollections.observableArrayList());
+            // Lub:
+            // showAlert("Brak wyników", "Nie znaleziono filmu o tytule: " + filmTitle);
+        }
+    }
+
+
+
 }
