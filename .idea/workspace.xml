@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac4fa122-6007-4f23-8db0-067442b8bfb9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/DeletingFilmDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmResponseDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filmRepository.db" beforeDir="false" afterPath="$PROJECT_DIR$/filmRepository.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/CreatingFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/CreatingFilmController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmSiteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FilmDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/CreatingFilmDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FilmDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

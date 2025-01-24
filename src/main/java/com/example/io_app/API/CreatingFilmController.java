@@ -57,8 +57,7 @@ public class CreatingFilmController {
 
         // Tworzenie DTO i zapisywanie
         CreatingFilmDTO creatingFilmDTO = new CreatingFilmDTO(title, genre, duration);
-        FilmRepository filmRepository = new FilmRepository();
-        FilmService filmService = new FilmService(filmRepository);
+        FilmService filmService = new FilmService();
         filmService.createAndSaveFilm(creatingFilmDTO);
 
         /*System.out.println("Dodano film: " + title + ", gatunek: " + genre + ", czas trwania: " + duration);

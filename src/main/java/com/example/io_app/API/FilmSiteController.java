@@ -1,7 +1,10 @@
 package com.example.io_app.API;
 
+import com.example.io_app.APPLICATION.FilmService;
 import com.example.io_app.DOMAIN.Film;
-import com.example.io_app.API.FindingFilmController;
+import com.example.io_app.DTO.FilmDTO;
+import com.example.io_app.DTO.FindingFilmRequestDTO;
+import com.example.io_app.DTO.FindingFilmResponseDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -28,16 +31,16 @@ import java.util.ResourceBundle;
 
 public class FilmSiteController implements Initializable {
     @FXML
-    private TableView<Film> filmTableView;
+    private TableView<FilmDTO> filmTableView;
 
     @FXML
-    private TableColumn<Film, String> titleColumn;
+    private TableColumn<FilmDTO, String> titleColumn;
 
     @FXML
-    private TableColumn<Film, String> genreColumn;
+    private TableColumn<FilmDTO, String> genreColumn;
 
     @FXML
-    private TableColumn<Film, Integer> durationColumn;
+    private TableColumn<FilmDTO, Integer> durationColumn;
 
     private FilmRepository filmRepository;
 
@@ -55,8 +58,11 @@ public class FilmSiteController implements Initializable {
     }
 
     private void loadFilmData() {
-        List<Film> films = filmRepository.findAll();
-        ObservableList<Film> observableFilms = FXCollections.observableArrayList(films);
+
+        FilmService filmService = new FilmService();
+        List<FilmDTO> films = filmService.getAllFilms();
+
+        ObservableList<FilmDTO> observableFilms = FXCollections.observableArrayList(films);
         filmTableView.setItems(observableFilms);
     }
 
@@ -112,7 +118,7 @@ public class FilmSiteController implements Initializable {
     @FXML
     public void deleteSelectedFilm(){
 
-        Film selectedFilm = filmTableView.getSelectionModel().getSelectedItem();
+        FilmDTO selectedFilm = filmTableView.getSelectionModel().getSelectedItem();
 
         // Obsługa braku zaznaczenia filmu
         if (selectedFilm == null) {
@@ -182,11 +188,15 @@ public class FilmSiteController implements Initializable {
 
     public void searchAndDisplayFilm(String filmTitleFragment) {
 
-        List<Film> foundFilms = filmRepository.findByTitle(filmTitleFragment);
+        FilmService filmService = new FilmService();
+
+        FindingFilmResponseDTO responseDTO = filmService.findFilmUseCase(new FindingFilmRequestDTO(filmTitleFragment));
+
+        List<FilmDTO> foundFilms = responseDTO.getFoundFilms();
 
         if (foundFilms != null) {
             // utworzenie listy z obiektami, jeśli znaleziono pasujące
-            ObservableList<Film> foundFilmList = FXCollections.observableArrayList(foundFilms);
+            ObservableList<FilmDTO> foundFilmList = FXCollections.observableArrayList(foundFilms);
             filmTableView.setItems(foundFilmList);
         } else {
             // Nic nie znaleziono - wyświetlić alert lub wyczyścić tabelę

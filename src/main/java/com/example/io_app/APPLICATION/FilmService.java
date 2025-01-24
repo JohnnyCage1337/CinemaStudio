@@ -3,6 +3,9 @@ package com.example.io_app.APPLICATION;
 import com.example.io_app.DOMAIN.Film;
 import com.example.io_app.DOMAIN.FilmManager;
 import com.example.io_app.DTO.CreatingFilmDTO;
+import com.example.io_app.DTO.FilmDTO;
+import com.example.io_app.DTO.FindingFilmRequestDTO;
+import com.example.io_app.DTO.FindingFilmResponseDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 
 
@@ -12,13 +15,24 @@ import java.util.stream.Collectors;
 public class FilmService {
     private final FilmRepository filmRepository;
 
-    public FilmService(FilmRepository filmRepository) {
+    public FilmService() {
+        FilmRepository filmRepository = new FilmRepository();
         this.filmRepository = filmRepository;
     }
 
     public List<CreatingFilmDTO> getFilmSummaries() {
         return filmRepository.findAll().stream()
                 .map(film -> new CreatingFilmDTO(film.getTitle(), film.getGenre(), film.getDuration()))
+                .collect(Collectors.toList());
+    }
+
+    public List<FilmDTO> getAllFilms() {
+        return filmRepository.findAll()
+                .stream()
+                .map(film -> new FilmDTO(
+                        film.getTitle(),
+                        film.getGenre(),
+                        film.getDuration()))
                 .collect(Collectors.toList());
     }
 
@@ -42,11 +56,15 @@ public class FilmService {
         return convertToDTO(film);
     }
 
-    public void findFilm(String filmTitleFragment){
+    public FindingFilmResponseDTO findFilmUseCase(FindingFilmRequestDTO requestDTO){
 
-        List<Film> foundFilms = filmRepository.findByTitle(filmTitleFragment);
+        List<Film> foundFilms = filmRepository.findByTitle(requestDTO.getTitle());
 
+        List<FilmDTO> dtos = foundFilms.stream()
+                .map(film -> new FilmDTO(film.getTitle(), film.getGenre(), film.getDuration()))
+                .collect(Collectors.toList());
 
+        return new FindingFilmResponseDTO(dtos);
     }
 
     public boolean deleteFilm(int id){
