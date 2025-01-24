@@ -1,11 +1,11 @@
 package com.example.io_app.DTO;
 
-public class FilmDTO {
+public class CreatingFilmDTO {
     private String title;
     private String genre;
     private int duration;
 
-    public FilmDTO(String title, String genre, int duration) {
+    public CreatingFilmDTO(String title, String genre, int duration) {
         this.title = title;
         this.genre = genre;
         this.duration = duration;

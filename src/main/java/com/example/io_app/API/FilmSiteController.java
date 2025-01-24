@@ -129,13 +129,13 @@ public class FilmSiteController implements Initializable {
         confirmationAlert.setHeaderText("Czy na pewno chcesz usunąć wybrany film?");
         confirmationAlert.setContentText("Film: " + selectedFilm.getTitle());
 
-        // Czekamy na odpowiedź użytkownika
+        // Czekanie na odpowiedź użytkownika
         Optional<ButtonType> result = confirmationAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // Użytkownik potwierdził usunięcie
+            // Potwierdzenie usunięcia przez uzytkownika
             boolean success = filmRepository.deleteByTitle(selectedFilm.getTitle());
             if (success) {
-                // Jeśli usunięcie się powiodło, odśwież dane w tabeli
+                // Jeśli usunięcie się powiodło, odświeżamy dane w tabeli
                 loadFilmData();
             } else {
                 System.out.println("Nie udało się usunąć filmu: " + selectedFilm.getTitle());

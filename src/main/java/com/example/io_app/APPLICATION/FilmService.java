@@ -2,7 +2,7 @@ package com.example.io_app.APPLICATION;
 
 import com.example.io_app.DOMAIN.Film;
 import com.example.io_app.DOMAIN.FilmManager;
-import com.example.io_app.DTO.FilmDTO;
+import com.example.io_app.DTO.CreatingFilmDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 
 
@@ -16,17 +16,17 @@ public class FilmService {
         this.filmRepository = filmRepository;
     }
 
-    public List<FilmDTO> getFilmSummaries() {
+    public List<CreatingFilmDTO> getFilmSummaries() {
         return filmRepository.findAll().stream()
-                .map(film -> new FilmDTO(film.getTitle(), film.getGenre(), film.getDuration()))
+                .map(film -> new CreatingFilmDTO(film.getTitle(), film.getGenre(), film.getDuration()))
                 .collect(Collectors.toList());
     }
 
-    public FilmDTO createAndSaveFilm(FilmDTO filmDTO) {
+    public CreatingFilmDTO createAndSaveFilm(CreatingFilmDTO creatingFilmDTO) {
         Film film = new Film(
-                filmDTO.getTitle(),
-                filmDTO.getGenre(),
-                filmDTO.getDuration()
+                creatingFilmDTO.getTitle(),
+                creatingFilmDTO.getGenre(),
+                creatingFilmDTO.getDuration()
         );
 
         FilmManager filmManager = new FilmManager();
@@ -42,10 +42,21 @@ public class FilmService {
         return convertToDTO(film);
     }
 
+    public void findFilm(String filmTitleFragment){
 
-    // Konwersja obiektu Film -> FilmDTO
-    private FilmDTO convertToDTO(Film film) {
-        return new FilmDTO(
+        List<Film> foundFilms = filmRepository.findByTitle(filmTitleFragment);
+
+
+    }
+
+    public boolean deleteFilm(int id){
+        return true;
+    }
+
+
+    // Konwersja obiektu Film -> CreatingFilmDTO
+    private CreatingFilmDTO convertToDTO(Film film) {
+        return new CreatingFilmDTO(
                 film.getTitle(),
                 film.getGenre(),
                 film.getDuration()

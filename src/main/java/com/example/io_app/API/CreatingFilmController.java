@@ -1,7 +1,7 @@
 package com.example.io_app.API;
 
 import com.example.io_app.APPLICATION.FilmService;
-import com.example.io_app.DTO.FilmDTO;
+import com.example.io_app.DTO.CreatingFilmDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -56,10 +56,10 @@ public class CreatingFilmController {
         }
 
         // Tworzenie DTO i zapisywanie
-        FilmDTO filmDTO = new FilmDTO(title, genre, duration);
+        CreatingFilmDTO creatingFilmDTO = new CreatingFilmDTO(title, genre, duration);
         FilmRepository filmRepository = new FilmRepository();
         FilmService filmService = new FilmService(filmRepository);
-        filmService.createAndSaveFilm(filmDTO);
+        filmService.createAndSaveFilm(creatingFilmDTO);
 
         /*System.out.println("Dodano film: " + title + ", gatunek: " + genre + ", czas trwania: " + duration);
 
