@@ -21,11 +21,6 @@ public class Session {
     private int totalSeats;
     private double price;
 
-//    public Session() {
-//    }
-
-
-
     public Session(int filmID, LocalDate date, LocalTime startTime, int roomNumber, int totalSeats, double price) {
         this.filmID = filmID;
         this.date = date;
@@ -33,6 +28,18 @@ public class Session {
         this.endTime = null;//calculateEndTime();
         this.roomNumber = roomNumber;
         this.availableSeats = totalSeats;
+        this.totalSeats = totalSeats;
+        this.price = price;
+    }
+
+    public Session(int id, int filmID, LocalDate date, LocalTime startTime, LocalTime endTime, int roomNumber, int availableSeats, int totalSeats, double price) {
+        this.id = id;
+        this.filmID = filmID;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = null;//calculateEndTime();
+        this.roomNumber = roomNumber;
+        this.availableSeats = availableSeats;
         this.totalSeats = totalSeats;
         this.price = price;
     }

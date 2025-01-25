@@ -14,8 +14,7 @@ public class FilmManager {
     }
 
     public Film createFilm(String title, String genre, int duration){
-        Film film = new Film(title, genre, duration);
-        return film;
+        return new Film(title, genre, duration);
     }
 
     public  Film readFilmByName(String title) {
@@ -26,7 +25,7 @@ public class FilmManager {
     }
 
     public List<Film> readAllFilms() {
-        return new ArrayList<>(filmRepository.findAll());
+        return filmRepository.findAll();
     }
 
     public boolean updateFilm(String title, int duration, String description, String genre, String rate, String director, String language) {
@@ -39,9 +38,7 @@ public class FilmManager {
         return false;
     }
 
-    public boolean deleteFilm(String title) {
-        return filmRepository.findAll().removeIf(film -> film.getTitle().equalsIgnoreCase(title));
+    public boolean deleteFilm(int id) {
+        return filmRepository.deleteByID(id);
     }
-
-
 }

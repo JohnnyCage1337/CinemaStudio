@@ -6,14 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ac4fa122-6007-4f23-8db0-067442b8bfb9" name="Changes" comment="Dodanie formularza do dodawania filmu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/CreateFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/CreateFilmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film/FilmManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film/FilmManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/SessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSessionRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSessionRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/SessionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/SessionRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,26 +62,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;merge1&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-23&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/Java/CinemaStudio/src/main/resources/com/example/io_app/Windows&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/micro/IdeaProjects/IO_APP/IO_Domain/src/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "merge2",
+    "jdk.selected.JAVA_MODULE": "openjdk-23",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Lenovo/Java/CinemaStudio/src/main/resources/com/example/io_app/Windows",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/micro/IdeaProjects/IO_APP/IO_Domain/src/Main.java",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Lenovo\Java\CinemaStudio\src\main\resources\com\example\io_app\Windows" />

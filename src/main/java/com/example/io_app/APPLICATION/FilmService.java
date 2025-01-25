@@ -31,18 +31,13 @@ public class FilmService {
     }
 
     public void createFilmUseCase(CreateFilmRequestDTO requestDTO) {
-        Film film = new Film(
-                requestDTO.getTitle(),
-                requestDTO.getGenre(),
-                requestDTO.getDuration()
-        );
 
         FilmManager filmManager = new FilmManager();
 
-        filmManager.createFilm(
-                film.getTitle(),
-                film.getGenre(),
-                film.getDuration()
+        Film film = filmManager.createFilm(
+                requestDTO.getTitle(),
+                requestDTO.getGenre(),
+                requestDTO.getDuration()
         );
 
         filmRepository.save(film);

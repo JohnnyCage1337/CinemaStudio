@@ -64,23 +64,36 @@ public class SessionRepository {
         try (Connection connection = DriverManager.getConnection(URL);
              PreparedStatement pstmt = connection.prepareStatement(insertSql)) {
 
-            // film_id (pobieramy z obiektu Film)
-            pstmt.setInt(1, session.getFilm().getId());
+            // 1) film_id (pobieramy z session.getFilmID())
+            pstmt.setInt(1, session.getFilmID());
 
-            // show_date (LocalDate -> String "yyyy-MM-dd")
+            // 2) show_date (LocalDate -> String "yyyy-MM-dd")
             String dateStr = session.getDate().format(DATE_FORMATTER);
             pstmt.setString(2, dateStr);
 
-            // start_time i end_time (LocalTime -> String "HH:mm")
+            // 3) start_time (LocalTime -> String "HH:mm")
+            // zakładam, że startTime != null
             String startTimeStr = session.getStartTime().format(TIME_FORMATTER);
             pstmt.setString(3, startTimeStr);
 
-            String endTimeStr = session.getEndTime().format(TIME_FORMATTER);
+            // 4) end_time (LocalTime -> String "HH:mm")
+            // Co jeśli endTime = null? Wstawiamy np. pusty string albo jakiś placeholder
+            String endTimeStr = "";
+            if (session.getEndTime() != null) {
+                endTimeStr = session.getEndTime().format(TIME_FORMATTER);
+            }
             pstmt.setString(4, endTimeStr);
 
+            // 5) room_number
             pstmt.setInt(5, session.getRoomNumber());
+
+            // 6) available_seats
             pstmt.setInt(6, session.getAvailableSeats());
+
+            // 7) total_seats
             pstmt.setInt(7, session.getTotalSeats());
+
+            // 8) price
             pstmt.setDouble(8, session.getPrice());
 
             pstmt.executeUpdate();
@@ -112,9 +125,9 @@ public class SessionRepository {
                 double price = rs.getDouble("price");
 
                 // Konwersja dateStr -> LocalDate
-                LocalDate dateObj = null;
+                LocalDate date = null;
                 try {
-                    dateObj = LocalDate.parse(dateStr, DATE_FORMATTER);
+                    date = LocalDate.parse(dateStr, DATE_FORMATTER);
                 } catch (DateTimeParseException e) {
                     e.printStackTrace();
                 }
@@ -129,14 +142,11 @@ public class SessionRepository {
                     e.printStackTrace();
                 }
 
-                // Odczyt Filmu z bazy
-                Film film = filmRepository.findByID(filmId);
-
                 // Tworzymy obiekt Session
                 Session session = new Session(
                         id,
-                        film,
-                        dateObj,
+                        filmId,
+                        date,
                         startTime,
                         endTime,
                         roomNumber,
@@ -176,6 +186,7 @@ public class SessionRepository {
                     int totalSeats = rs.getInt("total_seats");
                     double price = rs.getDouble("price");
 
+                    // Konwersja dateStr -> LocalDate
                     LocalDate dateObj = null;
                     try {
                         dateObj = LocalDate.parse(dateStr, DATE_FORMATTER);
@@ -185,7 +196,7 @@ public class SessionRepository {
 
                     // Konwersja start/end -> LocalTime
                     LocalTime startTime = null;
-                    LocalTime endTime   = null;
+                    LocalTime endTime = null;
                     try {
                         startTime = LocalTime.parse(startTimeStr, TIME_FORMATTER);
                         endTime   = LocalTime.parse(endTimeStr, TIME_FORMATTER);
@@ -193,18 +204,22 @@ public class SessionRepository {
                         e.printStackTrace();
                     }
 
-                    Film film = filmRepository.findByID(filmId);
+                    // Tutaj nie pobieramy już obiektu Film, bo Session ma filmID
+                    // Film film = filmRepository.findByID(filmId); // usuwamy/komentujemy
 
-                    session = new Session();
-                    session.setId(id);
-                    session.setFilm(film);
-                    session.setDate(dateObj);
-                    session.setStartTime(startTime);
-                    session.setEndTime(endTime);
-                    session.setRoomNumber(roomNumber);
-                    session.setAvailableSeats(availableSeats);
-                    session.setTotalSeats(totalSeats);
-                    session.setPrice(price);
+                    // Tworzymy obiekt Session, korzystając z konstruktora
+                    // lub seterów. Zakładam, że masz konstruktor z wszystkimi polami:
+                    session = new Session(
+                            id,
+                            filmId,
+                            dateObj,
+                            startTime,
+                            endTime,
+                            roomNumber,
+                            availableSeats,
+                            totalSeats,
+                            price
+                    );
                 }
             }
 
@@ -213,4 +228,5 @@ public class SessionRepository {
         }
         return session;
     }
+
 }
