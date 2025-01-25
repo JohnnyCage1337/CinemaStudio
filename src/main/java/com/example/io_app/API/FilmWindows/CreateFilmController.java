@@ -1,4 +1,4 @@
-package com.example.io_app.API.Windows;
+package com.example.io_app.API.FilmWindows;
 
 import com.example.io_app.APPLICATION.FilmService;
 import com.example.io_app.DTO.Film.CreateFilmRequestDTO;

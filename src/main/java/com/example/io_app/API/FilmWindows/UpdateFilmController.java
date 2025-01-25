@@ -1,4 +1,4 @@
-package com.example.io_app.API.Windows;
+package com.example.io_app.API.FilmWindows;
 
 import com.example.io_app.APPLICATION.FilmService;
 import com.example.io_app.DTO.Film.UpdateFilmRequestDTO;
@@ -12,13 +12,9 @@ public class UpdateFilmController {
 
     private FilmService filmService;
 
-    @FXML
-    private TextField titleField;
-    @FXML
-    private TextField durationField;
-
-    @FXML
-    private ComboBox<String> genreComboBox; // ComboBox zamiast TextField
+    @FXML    private TextField titleField;
+    @FXML    private TextField durationField;
+    @FXML    private ComboBox<String> genreComboBox; // ComboBox zamiast TextField
 
     private UpdateFilmRequestDTO requestDTO;  // Obiekt (dto) filmu do edycji
     private Runnable onClose;             // Callback po zamknięciu okna

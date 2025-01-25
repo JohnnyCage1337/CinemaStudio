@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FilmRepository {
 
-    private static final String URL = "jdbc:sqlite:filmRepository.db";
+    private static final String URL = "jdbc:sqlite:dataRepository.db";
 
     public FilmRepository() {
         createTableIfNotExists();

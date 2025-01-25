@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.MainSites.FilmSiteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.MainSites.FilmSiteController">
    <top>
       <HBox prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -15,7 +11,7 @@
             <Button mnemonicParsing="false" onAction="#handleSwitchToFilmsButton" prefWidth="125.0" text="Zarządzanie seansami" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="28.0" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="149.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="102.0" minWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
+            <Button minWidth="102.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </top>
@@ -35,10 +31,10 @@
    <center>
       <TableView fx:id="filmTableView" editable="true" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID filmu" />
-            <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Tytuł" />
-            <TableColumn fx:id="genreColumn" prefWidth="120.66667175292969" text="Gatunek" />
-            <TableColumn fx:id="durationColumn" prefWidth="117.33331298828125" text="Czas trwania" />
+            <TableColumn fx:id="idFilmColumn" prefWidth="58.0" text="ID filmu" />
+            <TableColumn fx:id="titleColumn" prefWidth="169.0" text="Tytuł" />
+            <TableColumn fx:id="genreColumn" prefWidth="123.0" text="Gatunek" />
+            <TableColumn fx:id="durationColumn" prefWidth="104.5" text="Czas trwania" />
             <!--<TableColumn prefWidth="75.0" text="Reżyser" />
             <TableColumn prefWidth="75.0" text="Reżyser" />-->
          </columns>

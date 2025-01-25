@@ -1,11 +1,10 @@
 package com.example.io_app.API.MainSites;
 
 import com.example.io_app.API.Application;
-import com.example.io_app.API.Windows.CreateFilmController;
-import com.example.io_app.API.Windows.FindFilmController;
-import com.example.io_app.API.Windows.UpdateFilmController;
+import com.example.io_app.API.FilmWindows.CreateFilmController;
+import com.example.io_app.API.FilmWindows.FindFilmController;
+import com.example.io_app.API.FilmWindows.UpdateFilmController;
 import com.example.io_app.APPLICATION.FilmService;
-import com.example.io_app.DOMAIN.Film.Film;
 import com.example.io_app.DTO.Film.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -34,27 +33,18 @@ public class FilmSiteController implements Initializable {
 
     private FilmService filmService;
 
-    @FXML
-    private TableView<FilmDTO> filmTableView;
-
-    @FXML
-    private TableColumn<FilmDTO, Integer> idColumn;
-
-    @FXML
-    private TableColumn<FilmDTO, String> titleColumn;
-
-    @FXML
-    private TableColumn<FilmDTO, String> genreColumn;
-
-    @FXML
-    private TableColumn<FilmDTO, Integer> durationColumn;
+    @FXML    private TableView<FilmDTO> filmTableView;
+    @FXML    private TableColumn<FilmDTO, Integer> idFilmColumn;
+    @FXML    private TableColumn<FilmDTO, String> titleColumn;
+    @FXML    private TableColumn<FilmDTO, String> genreColumn;
+    @FXML    private TableColumn<FilmDTO, Integer> durationColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         filmService = new FilmService();
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idFilmColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -98,7 +88,7 @@ public class FilmSiteController implements Initializable {
     public void handleCreateButton() {
         try {
             // Wczytaj FXML dla formularza
-            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/Windows/CreateFilm.fxml"));
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FilmWindows/CreateFilm.fxml"));
             Parent root = loader.load();
 
             // Pobierz kontroler formularza i ustaw callback, jeśli potrzeba
@@ -169,7 +159,7 @@ public class FilmSiteController implements Initializable {
     public void handleFindButton() {
         try {
             // Wczytaj FXML dla formularza
-            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/Windows/FindFilm.fxml"));
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FilmWindows/FindFilm.fxml"));
             Parent root = loader.load();
 
             // Pobranie kontrolera formularza i ew. ustawienie callback, jeśli potrzeba
@@ -193,24 +183,6 @@ public class FilmSiteController implements Initializable {
         }
     }
 
-    public void processFindFilm(String filmTitleFragment) {
-
-        FindFilmResponseDTO responseDTO = filmService.findFilmUseCase(new FindFilmRequestDTO(filmTitleFragment));
-
-        List<FilmDTO> foundFilms = responseDTO.getFoundFilms();
-
-        if (foundFilms != null) {
-            // utworzenie listy z obiektami, jeśli znaleziono pasujące
-            ObservableList<FilmDTO> foundFilmList = FXCollections.observableArrayList(foundFilms);
-            filmTableView.setItems(foundFilmList);
-        } else {
-            // Nic nie znaleziono - wyświetlić alert lub wyczyścić tabelę
-            filmTableView.setItems(FXCollections.observableArrayList());
-            // Lub:
-            // showAlert("Brak wyników", "Nie znaleziono filmu o tytule: " + filmTitle);
-        }
-    }
-
     @FXML
     public void handleUpdateButton() {
         try {
@@ -222,7 +194,7 @@ public class FilmSiteController implements Initializable {
             }
 
             // Wczytaj FXML dla formularza
-            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/Windows/UpdateFilm.fxml"));
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FilmWindows/UpdateFilm.fxml"));
             Parent root = loader.load();
 
 
@@ -248,6 +220,24 @@ public class FilmSiteController implements Initializable {
             stage.showAndWait(); // Poczekaj na zamknięcie okna
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void processFindFilm(String filmTitleFragment) {
+
+        FindFilmResponseDTO responseDTO = filmService.findFilmUseCase(new FindFilmRequestDTO(filmTitleFragment));
+
+        List<FilmDTO> foundFilms = responseDTO.getFoundFilms();
+
+        if (foundFilms != null) {
+            // utworzenie listy z obiektami, jeśli znaleziono pasujące
+            ObservableList<FilmDTO> foundFilmList = FXCollections.observableArrayList(foundFilms);
+            filmTableView.setItems(foundFilmList);
+        } else {
+            // Nic nie znaleziono - wyświetlić alert lub wyczyścić tabelę
+            filmTableView.setItems(FXCollections.observableArrayList());
+            // Lub:
+            // showAlert("Brak wyników", "Nie znaleziono filmu o tytule: " + filmTitle);
         }
     }
 }

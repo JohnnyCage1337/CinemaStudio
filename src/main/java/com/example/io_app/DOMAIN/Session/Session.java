@@ -4,19 +4,31 @@ import com.example.io_app.DOMAIN.Film.Film;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Session {
 
     private int id;
     private Film film;
-    private int roomNumber;
+    private Date date;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private double price;
+    private int roomNumber;
     private int availableSeats;
     private int totalSeats;
+    private double price;
 
     public Session() {
+    }
+
+    public Session(Film film, int roomNumber, LocalDateTime startTime, double price, int totalSeats) {
+        this.film = film;
+        this.roomNumber = roomNumber;
+        this.startTime = startTime;
+        this.endTime = calculateEndTime();
+        this.price = price;
+        this.totalSeats = totalSeats;
+        this.availableSeats = totalSeats;
     }
 
     public Session(int id, Film film, int roomNumber, LocalDateTime startTime, double price, int totalSeats) {
@@ -97,6 +109,10 @@ public class Session {
         return endTime;
     }
 
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
     public double getPrice() {
         return price;
     }
@@ -119,5 +135,13 @@ public class Session {
 
     public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

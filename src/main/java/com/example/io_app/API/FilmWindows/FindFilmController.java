@@ -1,4 +1,4 @@
-package com.example.io_app.API.Windows;
+package com.example.io_app.API.FilmWindows;
 
 import com.example.io_app.API.MainSites.FilmSiteController;
 import javafx.fxml.FXML;
@@ -7,8 +7,7 @@ import javafx.stage.Stage;
 
 public class FindFilmController {
 
-    @FXML
-    private TextField searchField;
+    @FXML    private TextField searchField;
 
     //kontroler rodzica
     private FilmSiteController filmSiteController;

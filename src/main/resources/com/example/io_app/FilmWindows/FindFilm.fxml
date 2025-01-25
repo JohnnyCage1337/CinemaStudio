@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="204.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.Windows.FindFilmController">
+<AnchorPane prefHeight="204.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.FilmWindows.FindFilmController">
    <children>
       <TextField fx:id="searchField" layoutX="67.0" layoutY="85.0" prefHeight="42.0" prefWidth="222.0" promptText="Wprowadź nazwę" />
       <Text fill="#cb4343" fontSmoothingType="LCD" layoutX="18.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wyszukiwanie filmu po nazwie" textAlignment="CENTER" wrappingWidth="320.9453125">

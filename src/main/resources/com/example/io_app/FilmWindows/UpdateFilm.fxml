@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="167.0" prefWidth="318.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.io_app.API.Windows.UpdateFilmController">
+            fx:controller="com.example.io_app.API.FilmWindows.UpdateFilmController">
 
     <children>
         <!-- Tytuł -->
