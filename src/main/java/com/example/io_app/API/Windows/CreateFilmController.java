@@ -4,6 +4,7 @@ import com.example.io_app.APPLICATION.FilmService;
 import com.example.io_app.DTO.Film.CreateFilmRequestDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,7 +16,7 @@ public class CreateFilmController {
     @FXML
     private TextField titleField;
     @FXML
-    private TextField genreField;
+    private ComboBox<String> genreComboBox;
     @FXML
     private TextField durationField;
 
@@ -30,9 +31,21 @@ public class CreateFilmController {
     }
 
     @FXML
+    public void initialize(){
+        genreComboBox.getItems().addAll(
+                "Akcja",
+                "Komedia",
+                "Horror",
+                "Thriller",
+                "Dramat",
+                "Animacja"
+        );
+    }
+
+    @FXML
     public void createFilm() {
         String title = titleField.getText();
-        String genre = genreField.getText();
+        String genre = genreComboBox.getValue();
         //int duration = Integer.parseInt(durationField.getText());
 
         // Walidacja tytułu
