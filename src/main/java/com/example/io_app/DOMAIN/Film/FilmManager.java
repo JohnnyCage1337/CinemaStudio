@@ -1,4 +1,4 @@
-package com.example.io_app.DOMAIN;
+package com.example.io_app.DOMAIN.Film;
 
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 

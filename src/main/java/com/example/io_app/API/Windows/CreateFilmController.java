@@ -1,15 +1,16 @@
-package com.example.io_app.API;
+package com.example.io_app.API.Windows;
 
 import com.example.io_app.APPLICATION.FilmService;
-import com.example.io_app.DTO.CreatingFilmDTO;
-import com.example.io_app.INFRASTRUCTURE.FilmRepository;
+import com.example.io_app.DTO.Film.CreateFilmRequestDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-public class CreatingFilmController {
+public class CreateFilmController {
+
+    private FilmService filmService;
 
     @FXML
     private TextField titleField;
@@ -18,6 +19,10 @@ public class CreatingFilmController {
     @FXML
     private TextField durationField;
 
+    public CreateFilmController(){
+        filmService = new FilmService();
+    }
+
     private Runnable onClose; // Callback po zamknięciu okna
 
     public void setOnClose(Runnable onClose) {
@@ -25,7 +30,7 @@ public class CreatingFilmController {
     }
 
     @FXML
-    public void saveMovie() {
+    public void createFilm() {
         String title = titleField.getText();
         String genre = genreField.getText();
         //int duration = Integer.parseInt(durationField.getText());
@@ -56,9 +61,8 @@ public class CreatingFilmController {
         }
 
         // Tworzenie DTO i zapisywanie
-        CreatingFilmDTO creatingFilmDTO = new CreatingFilmDTO(title, genre, duration);
-        FilmService filmService = new FilmService();
-        filmService.createAndSaveFilm(creatingFilmDTO);
+        CreateFilmRequestDTO createFilmRequestDTO = new CreateFilmRequestDTO(title, genre, duration);
+        filmService.createFilmUseCase(createFilmRequestDTO);
 
         /*System.out.println("Dodano film: " + title + ", gatunek: " + genre + ", czas trwania: " + duration);
 

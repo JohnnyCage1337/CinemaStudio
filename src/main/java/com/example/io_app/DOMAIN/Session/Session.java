@@ -1,4 +1,6 @@
-package com.example.io_app.DOMAIN;
+package com.example.io_app.DOMAIN.Session;
+
+import com.example.io_app.DOMAIN.Film.Film;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

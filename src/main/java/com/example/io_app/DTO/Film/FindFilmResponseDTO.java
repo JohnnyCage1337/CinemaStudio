@@ -1,12 +1,12 @@
-package com.example.io_app.DTO;
+package com.example.io_app.DTO.Film;
 
 import java.util.List;
 
-public class FindingFilmResponseDTO {
+public class FindFilmResponseDTO {
 
     private List<FilmDTO> foundFilms;
 
-    public FindingFilmResponseDTO(List<FilmDTO> dtos){
+    public FindFilmResponseDTO(List<FilmDTO> dtos){
         this.foundFilms = dtos;
     }
 

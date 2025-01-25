@@ -1,7 +1,8 @@
-package com.example.io_app.DTO;
+package com.example.io_app.DTO.Film;
 
 public class FilmDTO {
 
+    private int id;
     private String title;
     private String genre;
     private int duration;
@@ -10,6 +11,21 @@ public class FilmDTO {
         this.title = title;
         this.genre = genre;
         this.duration = duration;
+    }
+
+    public FilmDTO(int id, String title, String genre, int duration) {
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+        this.duration = duration;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

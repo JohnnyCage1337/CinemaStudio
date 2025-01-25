@@ -1,10 +1,11 @@
-package com.example.io_app.API;
+package com.example.io_app.API.Windows;
 
+import com.example.io_app.API.MainSites.FilmSiteController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class FindingFilmController {
+public class FindFilmController {
 
     @FXML
     private TextField searchField;
@@ -17,7 +18,7 @@ public class FindingFilmController {
     }
 
     @FXML
-    public void searchFilm() {
+    public void findFilm() {
         String filmTitleFragment = searchField.getText();
 
         // Logika wyszukiwania
@@ -27,7 +28,7 @@ public class FindingFilmController {
             return;
         }
 
-        filmSiteController.searchAndDisplayFilm(filmTitleFragment);
+        filmSiteController.processFindFilm(filmTitleFragment);
         closeWindow();
     }
 

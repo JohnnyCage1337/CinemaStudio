@@ -5,15 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac4fa122-6007-4f23-8db0-067442b8bfb9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Windows/UpdateFilmController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/CreateFilmRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/DeleteFilmRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/DeleteFilmResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/UpdateFilmRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/Windows/UpdateFilm.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/filmRepository.db" beforeDir="false" afterPath="$PROJECT_DIR$/filmRepository.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/CreatingFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/CreatingFilmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmSiteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/CreatingFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Windows/CreateFilmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FindingFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Windows/FindFilmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FilmDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/CONTRACTS/FilmRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/CONTRACTS/FilmRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film/Film.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/FilmManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film/FilmManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/FilmValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film/FilmValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/CreatingFilmDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/DeletingFilmDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FilmDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/FilmDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/FindFilmRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/FindingFilmResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/FindFilmResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/CreatingFilm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/Windows/CreateFilm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/FilmSite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/FilmSite.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/FindingFilm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/Windows/FindFilm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/SessionSite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/SessionSite.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +47,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -70,10 +93,10 @@
     "Application.HelloApplication.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "b1",
+    "git-widget-placeholder": "merge1",
     "jdk.selected.JAVA_MODULE": "openjdk-23",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Lenovo/Java/CinemaStudio",
+    "last_opened_file_path": "C:/Users/Lenovo/Java/CinemaStudio/src/main/resources/com/example/io_app/Windows",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,10 +109,16 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Java\CinemaStudio\src\main\resources\com\example\io_app\Windows" />
+      <recent name="C:\Users\Lenovo\Java\CinemaStudio\src\main\resources\com\example\io_app\MainSites" />
       <recent name="C:\Users\micro\IdeaProjects\IO_APP\src\main\java\com\example\io_app\API" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.example.io_app" />
+      <recent name="com.example.io_app.DOMAIN.Session" />
+      <recent name="com.example.io_app.DOMAIN.Film" />
+      <recent name="com.example.io_app.API.MainSites" />
+      <recent name="com.example.io_app.API.Windows" />
+      <recent name="com.example.io_app.DTO.Film" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Application">
@@ -98,7 +127,7 @@
       <module name="IO_APP" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.io_app.API.*" />
+          <option name="PATTERN" value="com.example.io_app.API.Windows.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -110,7 +139,7 @@
       <module name="IO_APP" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.io_app.API.*" />
+          <option name="PATTERN" value="com.example.io_app.API.Windows.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -208,6 +237,26 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/b1" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">

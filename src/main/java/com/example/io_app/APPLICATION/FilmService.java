@@ -1,11 +1,8 @@
 package com.example.io_app.APPLICATION;
 
-import com.example.io_app.DOMAIN.Film;
-import com.example.io_app.DOMAIN.FilmManager;
-import com.example.io_app.DTO.CreatingFilmDTO;
-import com.example.io_app.DTO.FilmDTO;
-import com.example.io_app.DTO.FindingFilmRequestDTO;
-import com.example.io_app.DTO.FindingFilmResponseDTO;
+import com.example.io_app.DOMAIN.Film.Film;
+import com.example.io_app.DOMAIN.Film.FilmManager;
+import com.example.io_app.DTO.Film.*;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 
 
@@ -13,34 +10,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FilmService {
+
     private final FilmRepository filmRepository;
+    private final FilmManager filmManager;
 
     public FilmService() {
-        FilmRepository filmRepository = new FilmRepository();
-        this.filmRepository = filmRepository;
-    }
-
-    public List<CreatingFilmDTO> getFilmSummaries() {
-        return filmRepository.findAll().stream()
-                .map(film -> new CreatingFilmDTO(film.getTitle(), film.getGenre(), film.getDuration()))
-                .collect(Collectors.toList());
+        this.filmRepository = new FilmRepository();
+        this.filmManager = new FilmManager();
     }
 
     public List<FilmDTO> getAllFilms() {
         return filmRepository.findAll()
                 .stream()
                 .map(film -> new FilmDTO(
+                        film.getId(),
                         film.getTitle(),
                         film.getGenre(),
                         film.getDuration()))
                 .collect(Collectors.toList());
     }
 
-    public CreatingFilmDTO createAndSaveFilm(CreatingFilmDTO creatingFilmDTO) {
+    public void createFilmUseCase(CreateFilmRequestDTO requestDTO) {
         Film film = new Film(
-                creatingFilmDTO.getTitle(),
-                creatingFilmDTO.getGenre(),
-                creatingFilmDTO.getDuration()
+                requestDTO.getTitle(),
+                requestDTO.getGenre(),
+                requestDTO.getDuration()
         );
 
         FilmManager filmManager = new FilmManager();
@@ -52,32 +46,37 @@ public class FilmService {
         );
 
         filmRepository.save(film);
-
-        return convertToDTO(film);
     }
 
-    public FindingFilmResponseDTO findFilmUseCase(FindingFilmRequestDTO requestDTO){
+    public FindFilmResponseDTO findFilmUseCase(FindFilmRequestDTO requestDTO){
 
         List<Film> foundFilms = filmRepository.findByTitle(requestDTO.getTitle());
 
         List<FilmDTO> dtos = foundFilms.stream()
-                .map(film -> new FilmDTO(film.getTitle(), film.getGenre(), film.getDuration()))
+                .map(film -> new FilmDTO(
+                        film.getId(),
+                        film.getTitle(),
+                        film.getGenre(),
+                        film.getDuration()))
                 .collect(Collectors.toList());
 
-        return new FindingFilmResponseDTO(dtos);
+        return new FindFilmResponseDTO(dtos);
     }
 
-    public boolean deleteFilm(int id){
-        return true;
+    public DeleteFilmResponseDTO deleteFilmUseCase(DeleteFilmRequestDTO requestDTO){
+        return new DeleteFilmResponseDTO(filmRepository.deleteByID(requestDTO.getFilmDTO().getId()));
     }
 
+    public void updateFilmUseCase(UpdateFilmRequestDTO requestDTO) {
+        Film film = filmRepository.findById(requestDTO.getMovieID());
+        if(film == null) {
+            throw new RuntimeException("Film not found");
+        }
 
-    // Konwersja obiektu Film -> CreatingFilmDTO
-    private CreatingFilmDTO convertToDTO(Film film) {
-        return new CreatingFilmDTO(
-                film.getTitle(),
-                film.getGenre(),
-                film.getDuration()
-        );
+        film.setTitle(requestDTO.getNewFilmTitle());
+        film.setGenre(requestDTO.getNewFilmGenre());
+        film.setDuration(requestDTO.getNewDuration());
+
+        filmRepository.updateFilm(film);
     }
 }

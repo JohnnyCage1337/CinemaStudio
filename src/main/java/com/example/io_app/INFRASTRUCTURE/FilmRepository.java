@@ -1,6 +1,6 @@
 package com.example.io_app.INFRASTRUCTURE;
 
-import com.example.io_app.DOMAIN.Film;
+import com.example.io_app.DOMAIN.Film.Film;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -63,11 +63,12 @@ public class FilmRepository {
              ResultSet rs = stmt.executeQuery(selectSql)) {
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String title = rs.getString("title");
                 String genre = rs.getString("genre");
                 int duration = rs.getInt("duration");
 
-                Film film = new Film(title, genre, duration);
+                Film film = new Film(id, title, genre, duration);
                 films.add(film);
             }
 
@@ -89,11 +90,12 @@ public class FilmRepository {
             pstmt.setString(1, "%" + titleToFind + "%");
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    int id = rs.getInt("id");
                     String title = rs.getString("title");
                     String genre = rs.getString("genre");
                     int duration = rs.getInt("duration");
 
-                    films.add(new Film(title, genre, duration));
+                    films.add(new Film(id, title, genre, duration));
                 }
             }
 
@@ -103,13 +105,12 @@ public class FilmRepository {
         return films;
     }
 
-    // (Opcjonalnie) Usuwanie filmu po tytule
-    public boolean deleteByTitle(String titleToDelete) {
-        String deleteSql = "DELETE FROM films WHERE LOWER(title) = LOWER(?);";
+    public boolean deleteByID(int id) {
+        String deleteSql = "DELETE FROM films WHERE id = ?;";
         try (Connection connection = DriverManager.getConnection(URL);
              PreparedStatement pstmt = connection.prepareStatement(deleteSql)) {
 
-            pstmt.setString(1, titleToDelete);
+            pstmt.setInt(1, id);
             int affectedRows = pstmt.executeUpdate();
             return affectedRows > 0; // jeśli > 0, to coś zostało usunięte
 
@@ -119,22 +120,47 @@ public class FilmRepository {
         return false;
     }
 
-    // (Opcjonalnie) Update – np. zmiana gatunku i/lub czasu trwania
-    public boolean updateFilm(String title, String newGenre, int newDuration) {
-        String updateSql = "UPDATE films SET genre = ?, duration = ? WHERE LOWER(title) = LOWER(?);";
+    public boolean updateFilm(Film film) {
+        String updateSql = "UPDATE films SET title = ?, genre = ?, duration = ? WHERE id = ?;";
         try (Connection connection = DriverManager.getConnection(URL);
              PreparedStatement pstmt = connection.prepareStatement(updateSql)) {
 
-            pstmt.setString(1, newGenre);
-            pstmt.setInt(2, newDuration);
-            pstmt.setString(3, title);
+            pstmt.setString(1, film.getTitle());
+            pstmt.setString(2, film.getGenre());
+            pstmt.setInt(3, film.getDuration());
+            pstmt.setInt(4, film.getId());  // jeśli ID jest typu long
 
             int affectedRows = pstmt.executeUpdate();
             return affectedRows > 0;
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public Film findById(int idToFind) {
+        String selectSql = "SELECT * FROM films WHERE id = ?;";
+        Film film = null;
+
+        try (Connection connection = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = connection.prepareStatement(selectSql)) {
+
+            pstmt.setInt(1, idToFind);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int id = rs.getInt("id");
+                    String title = rs.getString("title");
+                    String genre = rs.getString("genre");
+                    int duration = rs.getInt("duration");
+
+                    film = new Film(id, title, genre, duration);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return film; // Zwraca znaleziony film lub null, jeśli brak wyniku
     }
 }

@@ -1,4 +1,4 @@
-package com.example.io_app.API;
+package com.example.io_app.API.MainSites;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -14,10 +14,10 @@ import java.io.IOException;
 public class SessionSiteController {
 
     @FXML
-    public void switchToFilmsManagement(ActionEvent event) {
+    public void handleSwitchToSessionsButton(ActionEvent event) {
         try {
             // Wczytanie nowego pliku FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/FilmSite.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/MainSites/FilmSite.fxml"));
             Parent root = fxmlLoader.load();
 
             // Pobranie bieżącego okna

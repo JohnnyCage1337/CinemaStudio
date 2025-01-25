@@ -1,4 +1,4 @@
-package com.example.io_app.DOMAIN;
+package com.example.io_app.DOMAIN.Film;
 
 public class FilmValidator {
     public void validate(Film film) {

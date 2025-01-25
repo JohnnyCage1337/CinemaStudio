@@ -1,11 +1,12 @@
-package com.example.io_app.API;
+package com.example.io_app.API.MainSites;
 
+import com.example.io_app.API.Application;
+import com.example.io_app.API.Windows.CreateFilmController;
+import com.example.io_app.API.Windows.FindFilmController;
+import com.example.io_app.API.Windows.UpdateFilmController;
 import com.example.io_app.APPLICATION.FilmService;
-import com.example.io_app.DOMAIN.Film;
-import com.example.io_app.DTO.FilmDTO;
-import com.example.io_app.DTO.FindingFilmRequestDTO;
-import com.example.io_app.DTO.FindingFilmResponseDTO;
-import com.example.io_app.INFRASTRUCTURE.FilmRepository;
+import com.example.io_app.DOMAIN.Film.Film;
+import com.example.io_app.DTO.Film.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,8 +31,14 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class FilmSiteController implements Initializable {
+
+    private FilmService filmService;
+
     @FXML
     private TableView<FilmDTO> filmTableView;
+
+    @FXML
+    private TableColumn<FilmDTO, Integer> idColumn;
 
     @FXML
     private TableColumn<FilmDTO, String> titleColumn;
@@ -42,13 +49,12 @@ public class FilmSiteController implements Initializable {
     @FXML
     private TableColumn<FilmDTO, Integer> durationColumn;
 
-    private FilmRepository filmRepository;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        filmRepository = new FilmRepository();
 
-        // Ustawienie cellValueFactory dla kolumn
+        filmService = new FilmService();
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -59,7 +65,6 @@ public class FilmSiteController implements Initializable {
 
     private void loadFilmData() {
 
-        FilmService filmService = new FilmService();
         List<FilmDTO> films = filmService.getAllFilms();
 
         ObservableList<FilmDTO> observableFilms = FXCollections.observableArrayList(films);
@@ -67,11 +72,11 @@ public class FilmSiteController implements Initializable {
     }
 
     @FXML
-    public void swtichToFilmShowings(ActionEvent event) {
+    public void handleSwitchToFilmsButton(ActionEvent event) {
         try {
             // Wczytanie pliku FXML poprzedniego widoku
             FXMLLoader loader = new FXMLLoader(
-                    Application.class.getResource("/com/example/io_app/SessionSite.fxml")
+                    Application.class.getResource("/com/example/io_app/MainSites/SessionSite.fxml")
             );
             Parent root = loader.load();
 
@@ -90,15 +95,15 @@ public class FilmSiteController implements Initializable {
     }
 
     @FXML
-    public void openCreatingFilmWindow() {
+    public void handleCreateButton() {
         try {
             // Wczytaj FXML dla formularza
-            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/CreatingFilm.fxml"));
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/Windows/CreateFilm.fxml"));
             Parent root = loader.load();
 
             // Pobierz kontroler formularza i ustaw callback, jeśli potrzeba
-            CreatingFilmController creatingFilmController = loader.getController();
-            creatingFilmController.setOnClose(() -> {
+            CreateFilmController createFilmController = loader.getController();
+            createFilmController.setOnClose(() -> {
                 loadFilmData();
                 /*System.out.println("Zamknięto okno i można odświeżyć widok");*/
             });
@@ -116,7 +121,7 @@ public class FilmSiteController implements Initializable {
     }
 
     @FXML
-    public void deleteSelectedFilm(){
+    public void handleDeleteButton(){
 
         FilmDTO selectedFilm = filmTableView.getSelectionModel().getSelectedItem();
 
@@ -135,11 +140,13 @@ public class FilmSiteController implements Initializable {
         confirmationAlert.setHeaderText("Czy na pewno chcesz usunąć wybrany film?");
         confirmationAlert.setContentText("Film: " + selectedFilm.getTitle());
 
+        DeleteFilmRequestDTO requestDTO = new DeleteFilmRequestDTO(selectedFilm);
+
         // Czekanie na odpowiedź użytkownika
         Optional<ButtonType> result = confirmationAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             // Potwierdzenie usunięcia przez uzytkownika
-            boolean success = filmRepository.deleteByTitle(selectedFilm.getTitle());
+            boolean success = filmService.deleteFilmUseCase(requestDTO).isResult();
             if (success) {
                 // Jeśli usunięcie się powiodło, odświeżamy dane w tabeli
                 loadFilmData();
@@ -159,20 +166,20 @@ public class FilmSiteController implements Initializable {
     }
 
     @FXML
-    public void openFindingFilmWindow() {
+    public void handleFindButton() {
         try {
             // Wczytaj FXML dla formularza
-            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FindingFilm.fxml"));
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/Windows/FindFilm.fxml"));
             Parent root = loader.load();
 
             // Pobranie kontrolera formularza i ew. ustawienie callback, jeśli potrzeba
-            FindingFilmController findingFilmController = loader.getController();
-            /*findingFilmController.setOnClose(() -> {
+            FindFilmController findFilmController = loader.getController();
+            /*findFilmController.setOnClose(() -> {
                 loadFilmData();
             });*/
 
             //przekazanie aktualnego kontrolera (strony głównej filmów) od dziecka - kontroler "Znajdź film"
-            findingFilmController.setFilmSiteController(this);
+            findFilmController.setFilmSiteController(this);
 
             // Stwórz nowe okno (Stage)
             Stage stage = new Stage();
@@ -186,11 +193,9 @@ public class FilmSiteController implements Initializable {
         }
     }
 
-    public void searchAndDisplayFilm(String filmTitleFragment) {
+    public void processFindFilm(String filmTitleFragment) {
 
-        FilmService filmService = new FilmService();
-
-        FindingFilmResponseDTO responseDTO = filmService.findFilmUseCase(new FindingFilmRequestDTO(filmTitleFragment));
+        FindFilmResponseDTO responseDTO = filmService.findFilmUseCase(new FindFilmRequestDTO(filmTitleFragment));
 
         List<FilmDTO> foundFilms = responseDTO.getFoundFilms();
 
@@ -206,6 +211,43 @@ public class FilmSiteController implements Initializable {
         }
     }
 
+    @FXML
+    public void handleUpdateButton() {
+        try {
+            // Pobierz zaznaczony film
+            FilmDTO selectedFilm = filmTableView.getSelectionModel().getSelectedItem();
+            if (selectedFilm == null) {
+                System.out.println("Żaden film nie został zaznaczony.");
+                return;
+            }
+
+            // Wczytaj FXML dla formularza
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/Windows/UpdateFilm.fxml"));
+            Parent root = loader.load();
 
 
+            var dto = new UpdateFilmRequestDTO(
+                    selectedFilm.getId(),
+                    selectedFilm.getTitle(),
+                    selectedFilm.getGenre(),
+                    selectedFilm.getDuration());
+
+            // Pobierz kontroler formularza i ustaw film
+            UpdateFilmController controller = loader.getController();
+            controller.setFilm(dto); // Przekaż obiekt filmu do edycji
+            controller.setOnClose(() -> {
+                loadFilmData(); // Odśwież widok po zamknięciu okna
+            });
+
+            // Stwórz nowe okno (Stage)
+            Stage stage = new Stage();
+            stage.setTitle("Modyfikuj film");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL); // Okno modalne
+            stage.initOwner(Application.getMainStage());
+            stage.showAndWait(); // Poczekaj na zamknięcie okna
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

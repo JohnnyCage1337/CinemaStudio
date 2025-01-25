@@ -1,11 +1,11 @@
-package com.example.io_app.DTO;
+package com.example.io_app.DTO.Film;
 
-public class FindingFilmRequestDTO {
+public class FindFilmRequestDTO {
 
     private int id;
     private String title;
 
-    public FindingFilmRequestDTO(String title){
+    public FindFilmRequestDTO(String title){
         this.title=title;
     }
 

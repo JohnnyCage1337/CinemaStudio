@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="167.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.CreatingFilmController">
+<AnchorPane prefHeight="167.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.Windows.CreateFilmController">
    <children>
       <Label layoutX="10" layoutY="10" text="Tytuł filmu:" />
       <TextField fx:id="titleField" layoutX="100" layoutY="10" prefWidth="200" />
@@ -16,7 +16,7 @@
       <Label layoutX="10" layoutY="90" text="Czas trwania (min):" />
       <TextField fx:id="durationField" layoutX="150" layoutY="90" prefWidth="150" />
 
-      <Button layoutX="100" layoutY="130" onAction="#saveMovie" text="Zapisz" />
+      <Button layoutX="100" layoutY="130" onAction="#createFilm" text="Zapisz" />
       <Button layoutX="180" layoutY="130" onAction="#closeWindow" text="Anuluj" />
    </children>
 </AnchorPane>

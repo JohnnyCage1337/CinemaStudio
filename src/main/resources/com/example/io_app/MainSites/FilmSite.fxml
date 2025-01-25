@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.FilmSiteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.MainSites.FilmSiteController">
    <top>
       <HBox prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" prefHeight="103.0" prefWidth="122.0" text="Zarządzanie filmami" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#swtichToFilmShowings" prefWidth="125.0" text="Zarządzanie seansami" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleSwitchToFilmsButton" prefWidth="125.0" text="Zarządzanie seansami" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="28.0" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="149.0" HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="102.0" minWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
@@ -22,20 +22,20 @@
    <bottom>
       <HBox prefHeight="51.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#openCreatingFilmWindow" prefHeight="51.0" prefWidth="150.0" text="Dodaj film" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="51.0" prefWidth="150.0" text="Dodaj film" HBox.hgrow="ALWAYS" />
             <Region prefHeight="51.0" prefWidth="65.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#openFindingFilmWindow" prefHeight="51.0" prefWidth="149.0" text="Znajdź film" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleFindButton" prefHeight="51.0" prefWidth="149.0" text="Znajdź film" HBox.hgrow="ALWAYS" />
             <Region prefHeight="51.0 " prefWidth="70.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="150.0" text="Edytuj film" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="51.0" prefWidth="150.0" text="Edytuj film" HBox.hgrow="ALWAYS" />
             <Region prefHeight="51.0" prefWidth="70.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#deleteSelectedFilm" prefHeight="51.0" prefWidth="150.0" text="Usuń film" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="51.0" prefWidth="150.0" text="Usuń film" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </bottom>
    <center>
       <TableView fx:id="filmTableView" editable="true" BorderPane.alignment="CENTER">
          <columns>
-            <!--<TableColumn prefWidth="75.0" text="ID filmu" />-->
+            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID filmu" />
             <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Tytuł" />
             <TableColumn fx:id="genreColumn" prefWidth="120.66667175292969" text="Gatunek" />
             <TableColumn fx:id="durationColumn" prefWidth="117.33331298828125" text="Czas trwania" />

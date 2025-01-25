@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.SessionSiteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.MainSites.SessionSiteController">
    <top>
       <HBox prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToFilmsManagement" prefHeight="103.0" minWidth="125.0" prefWidth="122.0" text="Zarządzanie filmami" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleSwitchToSessionsButton" prefHeight="103.0" minWidth="125.0" prefWidth="122.0" text="Zarządzanie filmami" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" prefWidth="125.0" minWidth="125.0"  text="Zarządzanie seansami" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="28.0" HBox.hgrow="ALWAYS" />
             <DatePicker prefHeight="25.0" prefWidth="174.0" HBox.hgrow="ALWAYS" />
