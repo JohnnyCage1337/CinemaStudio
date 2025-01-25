@@ -2,7 +2,6 @@ package com.example.io_app.APPLICATION;
 
 import com.example.io_app.DOMAIN.Film.Film;
 import com.example.io_app.DOMAIN.Session.Session;
-import com.example.io_app.DTO.Film.FilmDTO;
 import com.example.io_app.DTO.Session.CreateSessionRequestDTO;
 import com.example.io_app.DTO.Session.SessionDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
@@ -25,23 +24,37 @@ public class SessionService {
 
     public void createSessionUseCase(CreateSessionRequestDTO requestDTO) {
 
-        Film film = filmRepository.findById(requestDTO.getFilmId());
+        Session session = new Session(
+                requestDTO.getFilmID(),
+                requestDTO.getDate(),
+                requestDTO.getStartTime(),
+                requestDTO.getRoomNumber(),
+                requestDTO.getTotalSeats(),
+                requestDTO.getPrice()
+        );
+
+        //dodać obiekt session do session repository
+
+
+        Film film = filmRepository.findByID(requestDTO.getFilmID());
         if (film == null) {
-            throw new RuntimeException("Nie znaleziono filmu o ID: " + requestDTO.getFilmId());
+            throw new RuntimeException("Nie znaleziono filmu o ID: " + requestDTO.getFilmID());
         }
-
-        Session session = new Session();
-        session.setFilm(film);
-        session.setDate(requestDTO.getDate());
-        session.setStartTime(requestDTO.getStartTime());
-        session.setEndTime(requestDTO.getEndTime());
-        session.setRoomNumber(requestDTO.getRoomNumber());
-        session.setAvailableSeats(requestDTO.getAvailableSeats());
-        session.setTotalSeats(requestDTO.getTotalSeats());
-        session.setPrice(requestDTO.getPrice());
-
-        sessionRepository.save(session);
+//
+//        Session session = new Session();
+//        session.setFilm(film);
+//        session.setDate(requestDTO.getDate());
+//        session.setStartTime(requestDTO.getStartTime());
+//        session.setEndTime(requestDTO.getEndTime());
+//        session.setRoomNumber(requestDTO.getRoomNumber());
+//        session.setAvailableSeats(requestDTO.getAvailableSeats());
+//        session.setTotalSeats(requestDTO.getTotalSeats());
+//        session.setPrice(requestDTO.getPrice());
+//
+//        sessionRepository.save(session);
     }
+
+
 
     public List<SessionDTO> getAllSessions() {
         // Pobieramy wszystkie sesje z repozytorium
@@ -60,7 +73,7 @@ public class SessionService {
                     // Tworzymy obiekt SessionDTO
                     return new SessionDTO(
                             session.getId(),                  // sessionId
-                            session.getFilm().getTitle(),     // title
+                            filmRepository.findByID(session.getFilmID()).getTitle(), //title
                             dateStr,                          // date
                             startTimeStr,                     // startTime
                             endTimeStr,                       // endTime

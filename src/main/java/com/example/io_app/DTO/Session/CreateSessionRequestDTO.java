@@ -1,54 +1,60 @@
 package com.example.io_app.DTO.Session;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class CreateSessionRequestDTO {
 
-    private int filmId;
-    private Date date;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private int filmID;
+    private LocalDate date;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private int roomNumber;
-    private int availableSeats;
     private int totalSeats;
     private double price;
 
-    public CreateSessionRequestDTO(int filmId,
-                                   Date date,
-                                   LocalDateTime startTime,
-                                   LocalDateTime endTime,
-                                   int roomNumber,
-                                   int availableSeats,
-                                   int totalSeats,
-                                   double price)
+    public CreateSessionRequestDTO(
+            int filmID,
+            LocalDate date,
+            LocalTime startTime,
+            int roomNumber,
+            int totalSeats,
+            double price
+    )
     {
-        this.filmId = filmId;
         this.date = date;
         this.startTime = startTime;
-        this.endTime = endTime;
         this.roomNumber = roomNumber;
-        this.availableSeats = availableSeats;
         this.totalSeats = totalSeats;
         this.price = price;
     }
 
     // gettery / settery
-    public int getFilmId() { return filmId; }
-    public Date getDate() { return date; }
-    public LocalDateTime getStartTime() { return startTime; }
-    public LocalDateTime getEndTime() { return endTime; }
+    public LocalTime getStartTime() { return startTime; }
+    public LocalDate getDate() { return date; }
     public int getRoomNumber() { return roomNumber; }
-    public int getAvailableSeats() { return availableSeats; }
     public int getTotalSeats() { return totalSeats; }
     public double getPrice() { return price; }
 
-    public void setFilmId(int filmId) { this.filmId = filmId; }
-    public void setDate(Date date) { this.date = date; }
-    public void setStartTime(LocalDateTime startTime) { this.startTime = startTime; }
-    public void setEndTime(LocalDateTime endTime) { this.endTime = endTime; }
+    public void setDate(LocalDate LocalDate) { this.date = date; }
+    public void setStartTime(LocalTime startTime) { this.startTime = startTime; }
     public void setRoomNumber(int roomNumber) { this.roomNumber = roomNumber; }
-    public void setAvailableSeats(int availableSeats) { this.availableSeats = availableSeats; }
     public void setTotalSeats(int totalSeats) { this.totalSeats = totalSeats; }
     public void setPrice(double price) { this.price = price; }
+
+    public int getFilmID() {
+        return filmID;
+    }
+
+    public void setFilmID(int filmID) {
+        this.filmID = filmID;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
 }

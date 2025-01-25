@@ -73,15 +73,9 @@ public class CreateFilmController {
             return;
         }
 
-        // Tworzenie DTO i zapisywanie
+        // Tworzenie DTO + wywołanie serwisu
         CreateFilmRequestDTO createFilmRequestDTO = new CreateFilmRequestDTO(title, genre, duration);
         filmService.createFilmUseCase(createFilmRequestDTO);
-
-        /*System.out.println("Dodano film: " + title + ", gatunek: " + genre + ", czas trwania: " + duration);
-
-        for(Film film : filmRepository.findAll()){
-            System.out.println(film);
-        }*/
 
         if (onClose != null) {
             onClose.run(); // Wywołaj callback, np. odświeżenie tabeli

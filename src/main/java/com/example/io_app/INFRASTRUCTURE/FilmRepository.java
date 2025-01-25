@@ -138,7 +138,7 @@ public class FilmRepository {
         return false;
     }
 
-    public Film findById(int idToFind) {
+    public Film findByID(int idToFind) {
         String selectSql = "SELECT * FROM films WHERE id = ?;";
         Film film = null;
 

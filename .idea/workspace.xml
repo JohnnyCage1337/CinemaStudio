@@ -4,29 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac4fa122-6007-4f23-8db0-067442b8bfb9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSessionRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/SessionDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/SessionWindows/CreateSession.fxml" afterDir="false" />
+    <list default="true" id="ac4fa122-6007-4f23-8db0-067442b8bfb9" name="Changes" comment="Dodanie formularza do dodawania filmu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmRepository.db" beforeDir="false" afterPath="$PROJECT_DIR$/dataRepository.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Windows/CreateFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/CreateFilmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Windows/FindFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/FindFilmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Windows/UpdateFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/UpdateFilmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/CreateFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/CreateFilmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSessionRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSessionRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/SessionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/SessionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/FilmSite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/FilmSite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/SessionSite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/SessionSite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/Windows/CreateFilm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/FilmWindows/CreateFilm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/Windows/FindFilm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/FilmWindows/FindFilm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/Windows/UpdateFilm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/FilmWindows/UpdateFilm.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

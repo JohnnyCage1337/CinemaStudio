@@ -68,7 +68,7 @@ public class FilmService {
     }
 
     public void updateFilmUseCase(UpdateFilmRequestDTO requestDTO) {
-        Film film = filmRepository.findById(requestDTO.getMovieID());
+        Film film = filmRepository.findByID(requestDTO.getMovieID());
         if(film == null) {
             throw new RuntimeException("Film not found");
         }

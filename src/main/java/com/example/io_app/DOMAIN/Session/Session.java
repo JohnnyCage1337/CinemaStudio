@@ -2,74 +2,70 @@ package com.example.io_app.DOMAIN.Session;
 
 import com.example.io_app.DOMAIN.Film.Film;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class Session {
 
     private int id;
-    private Film film;
-    private Date date;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private int filmID;
+    private LocalDate date;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private int roomNumber;
     private int availableSeats;
     private int totalSeats;
     private double price;
 
-    public Session() {
-    }
+//    public Session() {
+//    }
 
-    public Session(Film film, int roomNumber, LocalDateTime startTime, double price, int totalSeats) {
-        this.film = film;
-        this.roomNumber = roomNumber;
+
+
+    public Session(int filmID, LocalDate date, LocalTime startTime, int roomNumber, int totalSeats, double price) {
+        this.filmID = filmID;
+        this.date = date;
         this.startTime = startTime;
-        this.endTime = calculateEndTime();
-        this.price = price;
-        this.totalSeats = totalSeats;
-        this.availableSeats = totalSeats;
-    }
-
-    public Session(int id, Film film, int roomNumber, LocalDateTime startTime, double price, int totalSeats) {
-        this.id = id;
-        this.film = film;
+        this.endTime = null;//calculateEndTime();
         this.roomNumber = roomNumber;
-        this.startTime = startTime;
-        this.endTime = calculateEndTime();
-        this.price = price;
-        this.totalSeats = totalSeats;
         this.availableSeats = totalSeats;
+        this.totalSeats = totalSeats;
+        this.price = price;
     }
 
-    private LocalDateTime calculateEndTime() {
-        if (film != null && startTime != null) {
-            return startTime.plusMinutes(film.getDuration());
-        }
-        return null;
-    }
+//    private LocalTime calculateEndTime() {
+//        if (film != null && startTime != null) {
+//            return startTime.plusMinutes(film.getDuration());
+//        }
+//        return null;
+//    }
 
-    @Override
-    public String toString() {
-
-        DateTimeFormatter start = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm")
-                .withLocale(new java.util.Locale("pl", "PL"));
-
-        DateTimeFormatter end = DateTimeFormatter.ofPattern("HH:mm");
-
-        return "Seans {" +
-                "id = " + id +
-                ", tytuł = " + film.getTitle() +
-                ", sala = " + roomNumber +
-                ", początek = " + startTime.format(start) +
-                ", koniec = " + endTime.format(end) +
-                ", cena = " + price +
-                ", dostępne miejsca = " + availableSeats +
-                ", wszystkie miejsca = " + totalSeats +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//
+//        DateTimeFormatter start = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm")
+//                .withLocale(new java.util.Locale("pl", "PL"));
+//
+//        DateTimeFormatter end = DateTimeFormatter.ofPattern("HH:mm");
+//
+//        return "Seans {" +
+//                "id = " + id +
+//                ", tytuł = " + film.getTitle() +
+//                ", sala = " + roomNumber +
+//                ", początek = " + startTime.format(start) +
+//                ", koniec = " + endTime.format(end) +
+//                ", cena = " + price +
+//                ", dostępne miejsca = " + availableSeats +
+//                ", wszystkie miejsca = " + totalSeats +
+//                '}';
+//    }
 
     // GETTERY I SETTERY
+
 
     public int getId() {
         return id;
@@ -79,13 +75,36 @@ public class Session {
         this.id = id;
     }
 
-    public Film getFilm() {
-        return film;
+    public int getFilmID() {
+        return filmID;
     }
 
-    public void setFilm(Film film) {
-        this.film = film;
-        this.endTime = calculateEndTime();
+    public void setFilmID(int filmID) {
+        this.filmID = filmID;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
 
     public int getRoomNumber() {
@@ -94,31 +113,6 @@ public class Session {
 
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
-    }
-
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-        this.endTime = calculateEndTime();
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public int getAvailableSeats() {
@@ -137,11 +131,11 @@ public class Session {
         this.totalSeats = totalSeats;
     }
 
-    public Date getDate() {
-        return date;
+    public double getPrice() {
+        return price;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

@@ -2,15 +2,13 @@ package com.example.io_app.INFRASTRUCTURE;
 
 import com.example.io_app.DOMAIN.Film.Film;
 import com.example.io_app.DOMAIN.Session.Session;
-import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SessionRepository {
@@ -18,15 +16,13 @@ public class SessionRepository {
     private static final String URL = "jdbc:sqlite:dataRepository.db";
     private final FilmRepository filmRepository;
 
-    // Format do zapisu/odczytu Date (tylko YYYY-MM-DD):
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-
-    // Format do zapisu/odczytu LocalDateTime (np. YYYY-MM-DD HH:mm:ss):
-    private static final DateTimeFormatter DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    // Format do zapisu/odczytu samej daty, np. "2025-01-30"
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    // Format do zapisu/odczytu samego czasu, np. "16:30"
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     public SessionRepository() {
-        this.filmRepository = new FilmRepository();  // użyjemy do findById(filmId)
+        this.filmRepository = new FilmRepository();  // użyjemy do findByID(filmId)
         createTableIfNotExists();
     }
 
@@ -35,8 +31,8 @@ public class SessionRepository {
             CREATE TABLE IF NOT EXISTS sessions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 film_id INTEGER NOT NULL,
-                show_date TEXT NOT NULL,      -- przechowujemy date np. '2025-01-30'
-                start_time TEXT NOT NULL,     -- np. '2025-01-30 15:00:00'
+                show_date TEXT NOT NULL,      -- yyyy-MM-dd
+                start_time TEXT NOT NULL,     -- HH:mm'
                 end_time TEXT NOT NULL,
                 room_number INTEGER NOT NULL,
                 available_seats INTEGER NOT NULL,
@@ -71,15 +67,15 @@ public class SessionRepository {
             // film_id (pobieramy z obiektu Film)
             pstmt.setInt(1, session.getFilm().getId());
 
-            // show_date (java.util.Date -> String "yyyy-MM-dd")
-            String dateStr = DATE_FORMAT.format(session.getDate());
+            // show_date (LocalDate -> String "yyyy-MM-dd")
+            String dateStr = session.getDate().format(DATE_FORMATTER);
             pstmt.setString(2, dateStr);
 
-            // start_time i end_time (LocalDateTime -> String "yyyy-MM-dd HH:mm:ss")
-            String startTimeStr = session.getStartTime().format(DATE_TIME_FORMATTER);
+            // start_time i end_time (LocalTime -> String "HH:mm")
+            String startTimeStr = session.getStartTime().format(TIME_FORMATTER);
             pstmt.setString(3, startTimeStr);
 
-            String endTimeStr = session.getEndTime().format(DATE_TIME_FORMATTER);
+            String endTimeStr = session.getEndTime().format(TIME_FORMATTER);
             pstmt.setString(4, endTimeStr);
 
             pstmt.setInt(5, session.getRoomNumber());
@@ -115,32 +111,39 @@ public class SessionRepository {
                 int totalSeats = rs.getInt("total_seats");
                 double price = rs.getDouble("price");
 
-                // Zamieniamy dateStr -> java.util.Date
-                Date dateObj = null;
+                // Konwersja dateStr -> LocalDate
+                LocalDate dateObj = null;
                 try {
-                    dateObj = DATE_FORMAT.parse(dateStr);
-                } catch (ParseException e) {
+                    dateObj = LocalDate.parse(dateStr, DATE_FORMATTER);
+                } catch (DateTimeParseException e) {
                     e.printStackTrace();
                 }
 
-                // Zamieniamy start/end -> LocalDateTime
-                LocalDateTime startTime = LocalDateTime.parse(startTimeStr, DATE_TIME_FORMATTER);
-                LocalDateTime endTime = LocalDateTime.parse(endTimeStr, DATE_TIME_FORMATTER);
+                // Konwersja start/end -> LocalTime
+                LocalTime startTime = null;
+                LocalTime endTime = null;
+                try {
+                    startTime = LocalTime.parse(startTimeStr, TIME_FORMATTER);
+                    endTime   = LocalTime.parse(endTimeStr, TIME_FORMATTER);
+                } catch (DateTimeParseException e) {
+                    e.printStackTrace();
+                }
 
                 // Odczyt Filmu z bazy
-                Film film = filmRepository.findById(filmId);
+                Film film = filmRepository.findByID(filmId);
 
                 // Tworzymy obiekt Session
-                Session session = new Session();
-                session.setId(id);
-                session.setFilm(film);
-                session.setDate(dateObj);
-                session.setStartTime(startTime);
-                session.setEndTime(endTime);
-                session.setRoomNumber(roomNumber);
-                session.setAvailableSeats(availableSeats);
-                session.setTotalSeats(totalSeats);
-                session.setPrice(price);
+                Session session = new Session(
+                        id,
+                        film,
+                        dateObj,
+                        startTime,
+                        endTime,
+                        roomNumber,
+                        availableSeats,
+                        totalSeats,
+                        price
+                );
 
                 sessions.add(session);
             }
@@ -173,18 +176,24 @@ public class SessionRepository {
                     int totalSeats = rs.getInt("total_seats");
                     double price = rs.getDouble("price");
 
-                    // Konwersja dateStr -> java.util.Date
-                    Date dateObj = null;
+                    LocalDate dateObj = null;
                     try {
-                        dateObj = DATE_FORMAT.parse(dateStr);
-                    } catch (ParseException e) {
+                        dateObj = LocalDate.parse(dateStr, DATE_FORMATTER);
+                    } catch (DateTimeParseException e) {
                         e.printStackTrace();
                     }
 
-                    LocalDateTime startTime = LocalDateTime.parse(startTimeStr, DATE_TIME_FORMATTER);
-                    LocalDateTime endTime = LocalDateTime.parse(endTimeStr, DATE_TIME_FORMATTER);
+                    // Konwersja start/end -> LocalTime
+                    LocalTime startTime = null;
+                    LocalTime endTime   = null;
+                    try {
+                        startTime = LocalTime.parse(startTimeStr, TIME_FORMATTER);
+                        endTime   = LocalTime.parse(endTimeStr, TIME_FORMATTER);
+                    } catch (DateTimeParseException e) {
+                        e.printStackTrace();
+                    }
 
-                    Film film = filmRepository.findById(filmId);
+                    Film film = filmRepository.findByID(filmId);
 
                     session = new Session();
                     session.setId(id);
