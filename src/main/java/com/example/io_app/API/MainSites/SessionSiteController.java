@@ -3,6 +3,9 @@ package com.example.io_app.API.MainSites;
 import com.example.io_app.API.Application;
 import com.example.io_app.API.SessionWindows.CreateSessionController;
 import com.example.io_app.APPLICATION.SessionService;
+import com.example.io_app.DTO.Film.DeleteFilmRequestDTO;
+import com.example.io_app.DTO.Film.FilmDTO;
+import com.example.io_app.DTO.Session.DeleteSessionRequestDTO;
 import com.example.io_app.DTO.Session.SessionDTO;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -14,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,6 +28,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SessionSiteController implements Initializable {
@@ -115,6 +121,44 @@ public class SessionSiteController implements Initializable {
             stage.showAndWait(); // Poczekaj na zamknięcie okna
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleDeleteButton(){
+
+        SessionDTO selectedSession = sessionTableView.getSelectionModel().getSelectedItem();
+
+        // Obsługa braku zaznaczenia filmu
+        if (selectedSession == null) {
+            Alert noSelectionAlert = new Alert(Alert.AlertType.INFORMATION);
+            noSelectionAlert.setTitle("Brak zaznaczenia");
+            noSelectionAlert.setHeaderText("Nie wybrano żadnego seansu do usunięcia");
+            noSelectionAlert.setContentText("Zaznacz seans na liście, zanim klikniesz 'Usuń'.");
+            noSelectionAlert.showAndWait();
+            return;
+        }
+
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Potwierdź usunięcie");
+        confirmationAlert.setHeaderText("Czy na pewno chcesz usunąć wybrany seans?");
+
+        DeleteSessionRequestDTO requestDTO = new DeleteSessionRequestDTO(selectedSession);
+
+        // Czekanie na odpowiedź użytkownika
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Potwierdzenie usunięcia przez uzytkownika
+            boolean success = sessionService.deleteSessionUseCase(requestDTO).isResult();
+            if (success) {
+                // Jeśli usunięcie się powiodło, odświeżamy dane w tabeli
+                loadSessionData();
+            } else {
+                System.out.println("Nie udało się usunąć wybranego seansu");
+            }
+        } else {
+            // Użytkownik anulował usunięcie
+            System.out.println("Usunięcie seansu anulowane.");
         }
     }
 

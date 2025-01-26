@@ -229,4 +229,19 @@ public class SessionRepository {
         return session;
     }
 
+    public boolean deleteByID(int id) {
+        String deleteSql = "DELETE FROM sessions WHERE id = ?;";
+        try (Connection connection = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = connection.prepareStatement(deleteSql)) {
+
+            pstmt.setInt(1, id);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0; // Zwraca true jeśli co najmniej jeden wiersz został usunięty
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

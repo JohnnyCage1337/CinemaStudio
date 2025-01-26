@@ -34,7 +34,7 @@ public class SessionDTO {
 
     // --- GETTERY i SETTERY w konwencji JavaBeans (getXxx / setXxx) ---
 
-    public int getSessionId() {
+    public int getSessionID() {
         return sessionId;
     }
 
@@ -104,5 +104,9 @@ public class SessionDTO {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getSessionId() {
+        return sessionId;
     }
 }

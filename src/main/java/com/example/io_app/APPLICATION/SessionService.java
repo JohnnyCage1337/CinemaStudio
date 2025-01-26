@@ -1,15 +1,14 @@
 package com.example.io_app.APPLICATION;
 
-import com.example.io_app.DOMAIN.Film.Film;
 import com.example.io_app.DOMAIN.Session.Session;
 import com.example.io_app.DOMAIN.Session.SessionManager;
 import com.example.io_app.DTO.Session.CreateSessionRequestDTO;
+import com.example.io_app.DTO.Session.DeleteSessionRequestDTO;
+import com.example.io_app.DTO.Session.DeleteSessionResponseDTO;
 import com.example.io_app.DTO.Session.SessionDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 import com.example.io_app.INFRASTRUCTURE.SessionRepository;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +37,10 @@ public class SessionService {
         );
 
         sessionRepository.save(session);
+    }
+
+    public DeleteSessionResponseDTO deleteSessionUseCase(DeleteSessionRequestDTO requestDTO){
+        return new DeleteSessionResponseDTO(sessionRepository.deleteByID(requestDTO.getSessionDTO().getSessionID()));
     }
 
     public List<SessionDTO> getAllSessions() {
