@@ -244,4 +244,114 @@ public class SessionRepository {
         return false;
     }
 
+    public List<Session> findSessionsByDate(LocalDate searchDate) {
+        List<Session> sessions = new ArrayList<>();
+        String selectSql = "SELECT * FROM sessions WHERE show_date = ?;";
+
+        try (Connection connection = DriverManager.getConnection(URL);
+             PreparedStatement stmt = connection.prepareStatement(selectSql)) {
+
+
+            stmt.setString(1, searchDate.format(DATE_FORMATTER));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    // Pobieramy kolumny z bazy danych
+                    int id = rs.getInt("id");
+                    int filmId = rs.getInt("film_id");
+                    String dateStr = rs.getString("show_date");
+                    String startTimeStr = rs.getString("start_time");
+                    String endTimeStr = rs.getString("end_time");
+                    int roomNumber = rs.getInt("room_number");
+                    int availableSeats = rs.getInt("available_seats");
+                    int totalSeats = rs.getInt("total_seats");
+                    double price = rs.getDouble("price");
+
+                    // Konwersja daty i czasu
+                    LocalDate date = LocalDate.parse(dateStr, DATE_FORMATTER);
+                    LocalTime startTime = LocalTime.parse(startTimeStr, TIME_FORMATTER);
+                    LocalTime endTime = LocalTime.parse(endTimeStr, TIME_FORMATTER);
+
+                    // Tworzymy obiekt Session
+                    Session session = new Session(
+                            id,
+                            filmId,
+                            date,
+                            startTime,
+                            endTime,
+                            roomNumber,
+                            availableSeats,
+                            totalSeats,
+                            price
+                    );
+
+                    sessions.add(session);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sessions;
+    }
+
+    public void update(Session session) {
+        String updateSql = """
+        UPDATE sessions 
+        SET 
+            film_id = ?, 
+            show_date = ?, 
+            start_time = ?, 
+            end_time = ?, 
+            room_number = ?, 
+            available_seats = ?, 
+            total_seats = ?, 
+            price = ?
+        WHERE id = ?;
+    """;
+
+        try (Connection connection = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = connection.prepareStatement(updateSql)) {
+
+            // 1) film_id
+            pstmt.setInt(1, session.getFilmID());
+
+            // 2) show_date
+            String dateStr = session.getDate().format(DATE_FORMATTER);
+            pstmt.setString(2, dateStr);
+
+            // 3) start_time
+            String startTimeStr = session.getStartTime().format(TIME_FORMATTER);
+            pstmt.setString(3, startTimeStr);
+
+            // 4) end_time
+            String endTimeStr = "";
+            if (session.getEndTime() != null) {
+                endTimeStr = session.getEndTime().format(TIME_FORMATTER);
+            }
+            pstmt.setString(4, endTimeStr);
+
+            // 5) room_number
+            pstmt.setInt(5, session.getRoomNumber());
+
+            // 6) available_seats
+            pstmt.setInt(6, session.getAvailableSeats());
+
+            // 7) total_seats
+            pstmt.setInt(7, session.getTotalSeats());
+
+            // 8) price
+            pstmt.setDouble(8, session.getPrice());
+
+            // 9) session_id (identyfikator aktualizowanego rekordu)
+            pstmt.setInt(9, session.getId());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

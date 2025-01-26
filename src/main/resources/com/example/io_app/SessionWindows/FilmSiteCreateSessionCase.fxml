@@ -11,25 +11,19 @@
    <top>
       <HBox prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="103.0" prefWidth="122.0" text="Zarządzanie filmami" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#handleSwitchToFilmsButton" prefWidth="125.0" text="Zarządzanie seansami" HBox.hgrow="ALWAYS" />
             <Region prefHeight="25.0" prefWidth="28.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#handleAllFilmsButton" text="Wszystkie" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Wszystkie" />
             <Region prefHeight="25.0" prefWidth="13.0" HBox.hgrow="ALWAYS" />
-            <Button minWidth="102.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
+            <Button minWidth="102.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </top>
    <bottom>
       <HBox prefHeight="51.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="51.0" prefWidth="150.0" text="Dodaj film" HBox.hgrow="ALWAYS" />
             <Region prefHeight="51.0" prefWidth="65.0" HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#handleFindButton" prefHeight="51.0" prefWidth="149.0" text="Znajdź film" HBox.hgrow="ALWAYS" />
             <Region prefHeight="51.0 " prefWidth="70.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="51.0" prefWidth="150.0" text="Edytuj film" HBox.hgrow="ALWAYS" />
-            <Region prefHeight="51.0" prefWidth="70.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="51.0" prefWidth="150.0" text="Usuń film" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </bottom>

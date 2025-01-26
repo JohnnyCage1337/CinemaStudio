@@ -240,4 +240,10 @@ public class FilmSiteController implements Initializable {
             // showAlert("Brak wyników", "Nie znaleziono filmu o tytule: " + filmTitle);
         }
     }
+
+    public void handleAllFilmsButton(){
+        loadFilmData();
+    }
+
+
 }

@@ -1,12 +1,15 @@
 package com.example.io_app.DTO.Session;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class SessionDTO {
 
     private int sessionId;
     private String filmTitle;
-    private String date;
-    private String startTime;
-    private String endTime;
+    private LocalDate date;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private int place;
     private int availableSeats;
     private int allSeats;
@@ -14,9 +17,9 @@ public class SessionDTO {
 
     public SessionDTO(int sessionId,
                       String filmTitle,
-                      String date,
-                      String startTime,
-                      String endTime,
+                      LocalDate date,
+                      LocalTime startTime,
+                      LocalTime endTime,
                       int place,
                       int availableSeats,
                       int allSeats,
@@ -32,81 +35,75 @@ public class SessionDTO {
         this.price = price;
     }
 
-    // --- GETTERY i SETTERY w konwencji JavaBeans (getXxx / setXxx) ---
-
-    public int getSessionID() {
+    public int getSessionId() {
         return sessionId;
-    }
-
-    public void setSessionId(int sessionId) {
-        this.sessionId = sessionId;
     }
 
     public String getFilmTitle() {
         return filmTitle;
     }
 
-    public void setFilmTitle(String filmTitle) {
-        this.filmTitle = filmTitle;
-    }
-
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public int getPlace() {
         return place;
     }
 
-    public void setPlace(int place) {
-        this.place = place;
-    }
-
     public int getAvailableSeats() {
         return availableSeats;
-    }
-
-    public void setAvailableSeats(int availableSeats) {
-        this.availableSeats = availableSeats;
     }
 
     public int getAllSeats() {
         return allSeats;
     }
 
-    public void setAllSeats(int allSeats) {
-        this.allSeats = allSeats;
-    }
-
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setSessionId(int sessionId) {
+        this.sessionId = sessionId;
     }
 
-    public int getSessionId() {
-        return sessionId;
+    public void setFilmTitle(String filmTitle) {
+        this.filmTitle = filmTitle;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setPlace(int place) {
+        this.place = place;
+    }
+
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    public void setAllSeats(int allSeats) {
+        this.allSeats = allSeats;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

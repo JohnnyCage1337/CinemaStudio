@@ -31,6 +31,7 @@ public class FindFilmController {
         closeWindow();
     }
 
+
     @FXML
     public void closeWindow() {
         // zamknięcie obecne okno dialogowe

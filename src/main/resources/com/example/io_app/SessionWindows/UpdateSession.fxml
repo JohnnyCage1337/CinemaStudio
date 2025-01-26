@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="558.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.SessionWindows.CreateSessionController">
+<AnchorPane prefHeight="558.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.io_app.API.SessionWindows.UpdateSessionController">
 
     <children>
         <!-- ... pozostałe elementy ... -->
@@ -42,7 +42,7 @@
 
         <!-- PRZYCISKI -->
         <Button layoutX="28.0" layoutY="21.0" onAction="#displayFilmDataBaseButton" text="Wyświetl baze filmów" />
-        <Button layoutX="110.0" layoutY="504.0" onAction="#createSession" text="Zapisz" />
+        <Button layoutX="110.0" layoutY="504.0" onAction="#updateSession" text="Zapisz" />
         <Button layoutX="205.0" layoutY="504.0" onAction="#closeWindow" text="Anuluj" />
       <Button layoutX="240.0" layoutY="21.0" onAction="#resetFields" text="Resetuj pola" />
     </children>

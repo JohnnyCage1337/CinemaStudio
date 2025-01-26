@@ -7,11 +7,15 @@ import com.example.io_app.DOMAIN.Film.FilmValidator;
 import com.example.io_app.DTO.Session.CreatingSession.CreateSessionRequestDTO;
 import com.example.io_app.DTO.Session.CreatingSession.availableTimeSlotsDueDateRequestDTO;
 import com.example.io_app.DTO.Session.CreatingSession.getFilmDetailsRequestDTO;
+import com.example.io_app.DTO.Session.UpdateSession.UpdateSessionRequestDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -19,31 +23,38 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 
-public class CreateSessionController {
-
-    private FilmService filmService;
+public class UpdateSessionController {
     private SessionService sessionService;
+    private FilmService filmService;
 
-    @FXML private TextField filmIdField;
+    @FXML
+    private TextField filmIdField;
     @FXML private TextField filmTitleField;
-
     @FXML private DatePicker datePickerField;
     @FXML private ComboBox<String> timeBeginComboBox;
     @FXML private TextField timeEndField;
-
     @FXML private ComboBox<Integer> roomComboBox;
     @FXML private TextField numberOfSeatsField;
     @FXML private TextField priceField;
 
+    private Runnable onClose;
     private int filmDuration;
     private HashMap<Integer, Integer> hallCapacityMap = new HashMap<>();
 
-    private Runnable onClose; // Callback po zamknięciu okna
+    private UpdateSessionRequestDTO dto;
 
-    public CreateSessionController() {
-        this.filmService = new FilmService();
-        this.sessionService = new SessionService();
-    }
+    public void setDto(UpdateSessionRequestDTO dto) {
+        this.dto = dto;
+        filmIdField.setText(String.valueOf(dto.getFilmID()));
+        filmTitleField.setText("");
+        datePickerField.setValue(dto.getDate());
+        timeBeginComboBox.setValue(dto.getStartTime().toString());
+        timeEndField.setText(String.valueOf(dto.getEndTime()));
+        roomComboBox.setValue(dto.getRoomNumber());
+        numberOfSeatsField.setText(String.valueOf(dto.getTotalSeats()));
+        priceField.setText(String.valueOf(dto.getPrice()));
+
+        ;}
 
     @FXML
     public void initialize() {
@@ -63,7 +74,14 @@ public class CreateSessionController {
         roomComboBox.setDisable(true);
         numberOfSeatsField.setDisable(true);
         priceField.setDisable(true);
+
+
+        filmService = new FilmService();
+        sessionService = new SessionService();
+
     }
+
+
 
     public void setOnClose(Runnable onClose) {
         this.onClose = onClose;
@@ -200,7 +218,7 @@ public class CreateSessionController {
     }
 
     @FXML
-    public void createSession() {
+    public void updateSession() {
         int filmId = Integer.parseInt(filmIdField.getText());
         LocalDate sessionDate = datePickerField.getValue();
         LocalTime timeBegin = LocalTime.parse(timeBeginComboBox.getValue());
@@ -209,10 +227,7 @@ public class CreateSessionController {
         int numberOfSeats = Integer.parseInt(numberOfSeatsField.getText());
         double price = Double.parseDouble(priceField.getText());
 
-        var responseDTO = sessionService.createSessionUseCase(
-                new CreateSessionRequestDTO(filmId, sessionDate, timeBegin, timeEnd,
-                        roomNumber, numberOfSeats, price)
-        );
+        sessionService.updateSessionUseCase(dto);
 
         if (onClose != null) {
             onClose.run();
@@ -266,4 +281,5 @@ public class CreateSessionController {
         // Czyszczenie pola ID filmu
         filmIdField.clear();
     }
+
 }
