@@ -18,9 +18,9 @@ public class SessionManager {
         this.sessionRepository = new SessionRepository();
     }
 
-    public Session createSession(int filmID, LocalDate date, LocalTime startTime, int roomNumber, int totalSeats, double price
+    public Session createSession(int filmID, LocalDate date, LocalTime startTime, LocalTime endTime, int roomNumber, int totalSeats, double price
     ) {
-        return new Session(filmID, date, startTime, roomNumber, totalSeats, price);
+        return new Session(filmID, date, startTime, endTime, roomNumber, totalSeats, price);
     }
 
     public Session readSessionById(int id) {

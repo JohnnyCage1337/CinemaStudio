@@ -8,7 +8,6 @@ public class CreateSessionRequestDTO {
     private int filmID;
     private LocalDate date;
     private LocalTime startTime;
-    private LocalTime endTime;
     private int roomNumber;
     private int totalSeats;
     private double price;
@@ -22,6 +21,7 @@ public class CreateSessionRequestDTO {
             double price
     )
     {
+        this.filmID = filmID;
         this.date = date;
         this.startTime = startTime;
         this.roomNumber = roomNumber;
@@ -36,7 +36,7 @@ public class CreateSessionRequestDTO {
     public int getTotalSeats() { return totalSeats; }
     public double getPrice() { return price; }
 
-    public void setDate(LocalDate LocalDate) { this.date = date; }
+    public void setDate(LocalDate date) { this.date = date; }
     public void setStartTime(LocalTime startTime) { this.startTime = startTime; }
     public void setRoomNumber(int roomNumber) { this.roomNumber = roomNumber; }
     public void setTotalSeats(int totalSeats) { this.totalSeats = totalSeats; }
@@ -48,13 +48,5 @@ public class CreateSessionRequestDTO {
 
     public void setFilmID(int filmID) {
         this.filmID = filmID;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
     }
 }

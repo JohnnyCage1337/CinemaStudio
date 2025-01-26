@@ -9,6 +9,7 @@ import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 import com.example.io_app.INFRASTRUCTURE.SessionRepository;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,11 +27,11 @@ public class SessionService {
     public void createSessionUseCase(CreateSessionRequestDTO requestDTO) {
 
         SessionManager sessionManager = new SessionManager();
-
         Session session = sessionManager.createSession(
                 requestDTO.getFilmID(),
                 requestDTO.getDate(),
                 requestDTO.getStartTime(),
+                requestDTO.getStartTime().plusMinutes(filmRepository.findByID(requestDTO.getFilmID()).getDuration()),
                 requestDTO.getRoomNumber(),
                 requestDTO.getTotalSeats(),
                 requestDTO.getPrice()
@@ -39,36 +40,38 @@ public class SessionService {
         sessionRepository.save(session);
     }
 
-
-
     public List<SessionDTO> getAllSessions() {
-        // Pobieramy wszystkie sesje z repozytorium
         return sessionRepository.findAll()
                 .stream()
                 .map(session -> {
-                    // Konwersja Date -> String "yyyy-MM-dd"
-                    String dateStr = new SimpleDateFormat("yyyy-MM-dd").format(session.getDate());
+                    // Zamień LocalDate -> String "yyyy-MM-dd"
+                    String dateStr = session.getDate() != null
+                            ? session.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                            : "";
 
-                    // Konwersja LocalDateTime -> String "HH:mm"
-                    String startTimeStr = session.getStartTime()
-                            .format(DateTimeFormatter.ofPattern("HH:mm"));
-                    String endTimeStr = session.getEndTime()
-                            .format(DateTimeFormatter.ofPattern("HH:mm"));
+                    // Zamień LocalTime -> String "HH:mm"
+                    String startTimeStr = session.getStartTime() != null
+                            ? session.getStartTime().format(DateTimeFormatter.ofPattern("HH:mm"))
+                            : "";
 
-                    // Tworzymy obiekt SessionDTO
+                    String endTimeStr = session.getEndTime() != null
+                            ? session.getEndTime().format(DateTimeFormatter.ofPattern("HH:mm"))
+                            : "";
+
                     return new SessionDTO(
-                            session.getId(),                  // sessionId
-                            filmRepository.findByID(session.getFilmID()).getTitle(), //title
-                            dateStr,                          // date
-                            startTimeStr,                     // startTime
-                            endTimeStr,                       // endTime
-                            session.getRoomNumber(),          // place
-                            session.getAvailableSeats(),       // availableSeats
-                            session.getTotalSeats(),           // allSeats
-                            session.getPrice()                 // price
+                            session.getId(),
+                            filmRepository.findByID(session.getFilmID()).getTitle(),
+                            dateStr,
+                            startTimeStr,
+                            endTimeStr,
+                            session.getRoomNumber(),
+                            session.getAvailableSeats(),
+                            session.getTotalSeats(),
+                            session.getPrice()
                     );
                 })
                 .collect(Collectors.toList());
     }
+
 
 }

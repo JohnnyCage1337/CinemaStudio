@@ -143,8 +143,8 @@ public class CreateSessionController {
                 seats,
                 price
         );
-        //sessionService.createSessionUseCase(...);
 
+        sessionService.createSessionUseCase(requestDTO);
 
         // odświeżenie widok w oknie-rodzicu
         if (onClose != null) {

@@ -21,11 +21,11 @@ public class Session {
     private int totalSeats;
     private double price;
 
-    public Session(int filmID, LocalDate date, LocalTime startTime, int roomNumber, int totalSeats, double price) {
+    public Session(int filmID, LocalDate date, LocalTime startTime, LocalTime endTime, int roomNumber, int totalSeats, double price) {
         this.filmID = filmID;
         this.date = date;
         this.startTime = startTime;
-        this.endTime = null;//calculateEndTime();
+        this.endTime = endTime;
         this.roomNumber = roomNumber;
         this.availableSeats = totalSeats;
         this.totalSeats = totalSeats;
@@ -37,20 +37,12 @@ public class Session {
         this.filmID = filmID;
         this.date = date;
         this.startTime = startTime;
-        this.endTime = null;//calculateEndTime();
+        this.endTime = endTime;
         this.roomNumber = roomNumber;
         this.availableSeats = availableSeats;
         this.totalSeats = totalSeats;
         this.price = price;
     }
-
-//    private LocalTime calculateEndTime() {
-//        if (film != null && startTime != null) {
-//            return startTime.plusMinutes(film.getDuration());
-//        }
-//        return null;
-//    }
-
 //    @Override
 //    public String toString() {
 //

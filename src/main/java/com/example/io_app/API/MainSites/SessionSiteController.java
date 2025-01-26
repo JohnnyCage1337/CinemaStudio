@@ -48,7 +48,7 @@ public class SessionSiteController implements Initializable {
         sessionService = new SessionService();
 
         idSessionColumn.setCellValueFactory(new PropertyValueFactory<>("sessionId"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("filmTitle"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
