@@ -21,5 +21,5 @@ public class FindFilmResponseDTO {
         return foundFilms;
     }
 
-    public FilmDTO getFoundFilm() {return foundFilm;}
+    public FilmDTO getFoundFilm() {return foundFilms.getFirst();}
 }
