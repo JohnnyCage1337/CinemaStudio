@@ -9,6 +9,8 @@ import com.example.io_app.DOMAIN.Session.Session;
 import com.example.io_app.DOMAIN.Session.SessionManager;
 import com.example.io_app.DTO.Session.*;
 import com.example.io_app.DTO.Session.CreatingSession.availableTimeSlotsDueDateRequestDTO;
+import com.example.io_app.DTO.Session.FindSession.FindSessionByFilmTitleRequestDTO;
+import com.example.io_app.DTO.Session.FindSession.FindSessionByFilmTitleResponseDTO;
 import com.example.io_app.DTO.Session.UpdateSession.UpdateSessionRequestDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 import com.example.io_app.INFRASTRUCTURE.SessionRepository;
@@ -86,7 +88,48 @@ public class SessionService {
                 .collect(Collectors.toList());
     }
 
+    public FindSessionByFilmTitleResponseDTO findSessionByTitleUseCase(FindSessionByFilmTitleRequestDTO requestDTO) {
 
+        //lista filmów znalezionych po tytule z przekazanego fragmentu
+        List<Film> foundFilms = filmRepository.findByTitle(requestDTO.getFilmTitleFragment());
+
+        //utworzenie listy seansów
+        List<Session> foundSessions = new ArrayList<>();
+
+        //dodanie seansów do listy na podstawie ID filmów
+        for (Film film : foundFilms) {
+            // Pobierz listę sesji dla danego filmu
+            List<Session> sessions = sessionRepository.findByFilmID(film.getId());
+
+            // Sprawdź, czy lista sesji nie jest pusta
+            if (sessions != null && !sessions.isEmpty()) {
+                // Dodaj wszystkie sesje do foundSessions
+                foundSessions.addAll(sessions);
+            }
+        }
+
+        //zmapowanie List<Sessions> do List<SessionDTO>
+        List<SessionDTO> mappedFoundSessions = foundSessions.stream()
+                .map(session -> {
+                    return new SessionDTO(
+                            session.getId(),
+                            filmRepository.findByID(session.getFilmID()).getTitle(),
+                            session.getDate(),
+                            session.getStartTime(),
+                            session.getEndTime(),
+                            session.getRoomNumber(),
+                            session.getAvailableSeats(),
+                            session.getTotalSeats(),
+                            session.getPrice()
+                    );
+                })
+                .collect(Collectors.toList());
+
+        //tworzenie responseDTO
+        FindSessionByFilmTitleResponseDTO responseDTO = new FindSessionByFilmTitleResponseDTO(mappedFoundSessions);
+
+        return responseDTO;
+    }
 
 
     public List<SessionDTO> getSessionByDate(LocalDate date) {
