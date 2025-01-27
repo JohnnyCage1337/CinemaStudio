@@ -30,7 +30,9 @@ module com.example.io_app {
     opens com.example.io_app.DOMAIN.Session to javafx.base;
     opens com.example.io_app.DTO.Session to javafx.base, javafx.fxml;
     opens com.example.io_app.DTO.Film to javafx.base, javafx.fxml;
-    exports com.example.io_app.DTO.Session.CreatingSession;
-    opens com.example.io_app.DTO.Session.CreatingSession to javafx.base, javafx.fxml;
+    exports com.example.io_app.DTO.Session.CreateSession;
+    opens com.example.io_app.DTO.Session.CreateSession to javafx.base, javafx.fxml;
+    exports com.example.io_app.DTO.Session.DeleteSession;
+    opens com.example.io_app.DTO.Session.DeleteSession to javafx.base, javafx.fxml;
 
 }

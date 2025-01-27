@@ -22,7 +22,7 @@ public class SessionRepository {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     public SessionRepository() {
-        this.filmRepository = new FilmRepository();  // użyjemy do findByID(filmId)
+        this.filmRepository = new FilmRepository();
         createTableIfNotExists();
     }
 
@@ -64,36 +64,26 @@ public class SessionRepository {
         try (Connection connection = DriverManager.getConnection(URL);
              PreparedStatement pstmt = connection.prepareStatement(insertSql)) {
 
-            // 1) film_id (pobieramy z session.getFilmID())
             pstmt.setInt(1, session.getFilmID());
 
-            // 2) show_date (LocalDate -> String "yyyy-MM-dd")
             String dateStr = session.getDate().format(DATE_FORMATTER);
             pstmt.setString(2, dateStr);
 
-            // 3) start_time (LocalTime -> String "HH:mm")
-            // zakładam, że startTime != null
             String startTimeStr = session.getStartTime().format(TIME_FORMATTER);
             pstmt.setString(3, startTimeStr);
 
-            // 4) end_time (LocalTime -> String "HH:mm")
-            // Co jeśli endTime = null? Wstawiamy np. pusty string albo jakiś placeholder
             String endTimeStr = "";
             if (session.getEndTime() != null) {
                 endTimeStr = session.getEndTime().format(TIME_FORMATTER);
             }
             pstmt.setString(4, endTimeStr);
 
-            // 5) room_number
             pstmt.setInt(5, session.getRoomNumber());
 
-            // 6) available_seats
             pstmt.setInt(6, session.getAvailableSeats());
 
-            // 7) total_seats
             pstmt.setInt(7, session.getTotalSeats());
 
-            // 8) price
             pstmt.setDouble(8, session.getPrice());
 
             pstmt.executeUpdate();
@@ -204,11 +194,6 @@ public class SessionRepository {
                         e.printStackTrace();
                     }
 
-                    // Tutaj nie pobieramy już obiektu Film, bo Session ma filmID
-                    // Film film = filmRepository.findByID(filmId); // usuwamy/komentujemy
-
-                    // Tworzymy obiekt Session, korzystając z konstruktora
-                    // lub seterów. Zakładam, że masz konstruktor z wszystkimi polami:
                     session = new Session(
                             id,
                             filmId,

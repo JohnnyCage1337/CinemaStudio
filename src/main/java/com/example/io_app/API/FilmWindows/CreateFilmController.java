@@ -46,7 +46,6 @@ public class CreateFilmController {
     public void createFilm() {
         String title = titleField.getText();
         String genre = genreComboBox.getValue();
-        //int duration = Integer.parseInt(durationField.getText());
 
         // Walidacja tytułu
         if (title == null || title.trim().isEmpty()) {

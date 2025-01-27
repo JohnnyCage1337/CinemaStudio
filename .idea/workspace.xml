@@ -5,15 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac4fa122-6007-4f23-8db0-067442b8bfb9" name="Changes" comment="Dodanie formularza do dodawania filmu">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/FindSessionByFilmTitleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/FindSession/FindSessionByFilmTitleRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/FindSession/FindSessionByFilmTitleResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/SessionWindows/FindSessionByFilmTitle.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/CreateFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/CreateFilmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/UpdateFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/UpdateFilmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionFindFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionFindFilmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/UpdateSessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/UpdateSessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/CreateSessionRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSession/CreateSessionRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/CreateSessionResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSession/CreateSessionResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/availableHoursResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSession/availableHoursResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/availableTimeSlotsDueDateRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSession/availableTimeSlotsDueDateRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/getFilmDetailsRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSession/getFilmDetailsRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/getFilmDetailsResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSession/getFilmDetailsResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/DeleteSessionRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/DeleteSession/DeleteSessionRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/DeleteSessionResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/DeleteSession/DeleteSessionResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/SessionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/SessionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/SessionSite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/SessionSite.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +83,7 @@
     "Application.HelloApplication.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "probmerg",
+    "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-23",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/micro/IdeaProjects/IO_FINAL/CinemaStudio",
@@ -297,7 +310,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/UpdateSessionController.java</url>
-          <line>222</line>
+          <line>207</line>
           <properties class="com.example.io_app.API.SessionWindows.UpdateSessionController" method="updateSession">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -306,7 +319,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java</url>
-          <line>226</line>
+          <line>224</line>
           <properties class="com.example.io_app.APPLICATION.SessionService" method="updateSessionUseCase">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -315,7 +328,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionFindFilmController.java</url>
-          <line>70</line>
+          <line>69</line>
           <properties class="com.example.io_app.API.SessionWindows.CreateSessionFindFilmController" method="handleFindButton">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -324,7 +337,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java</url>
-          <line>180</line>
+          <line>175</line>
           <properties class="com.example.io_app.API.MainSites.FilmSiteController" method="handleUpdateButton">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -332,17 +345,8 @@
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/UpdateFilmController.java</url>
-          <line>61</line>
-          <properties class="com.example.io_app.API.FilmWindows.UpdateFilmController" method="updateFilm">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java</url>
-          <line>115</line>
+          <line>111</line>
           <properties class="com.example.io_app.API.MainSites.FilmSiteController" method="handleDeleteButton">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -351,7 +355,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java</url>
-          <line>72</line>
+          <line>71</line>
           <properties class="com.example.io_app.API.SessionWindows.CreateSessionController" method="displayFilmDataBaseButton">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -360,7 +364,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java</url>
-          <line>99</line>
+          <line>97</line>
           <properties class="com.example.io_app.API.SessionWindows.CreateSessionController" method="findFilmByEnetredId">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -369,7 +373,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java</url>
-          <line>125</line>
+          <line>116</line>
           <properties class="com.example.io_app.API.SessionWindows.CreateSessionController" method="onRoomSelected">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -378,7 +382,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java</url>
-          <line>149</line>
+          <line>134</line>
           <properties class="com.example.io_app.API.SessionWindows.CreateSessionController" method="getAvailableTimeSlotsDueDate">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -387,7 +391,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java</url>
-          <line>179</line>
+          <line>161</line>
           <properties class="com.example.io_app.API.SessionWindows.CreateSessionController" method="isSlotAvailableForFilm">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -396,7 +400,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java</url>
-          <line>186</line>
+          <line>168</line>
           <properties class="com.example.io_app.API.SessionWindows.CreateSessionController" method="calculateFinishedTime">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -405,7 +409,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java</url>
-          <line>200</line>
+          <line>181</line>
           <properties class="com.example.io_app.API.SessionWindows.CreateSessionController" method="createSession">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

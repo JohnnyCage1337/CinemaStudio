@@ -1,14 +1,15 @@
 package com.example.io_app.APPLICATION;
 
 import com.example.io_app.DOMAIN.Film.Film;
-import com.example.io_app.DTO.Film.UpdateFilmRequestDTO;
-import com.example.io_app.DTO.Session.CreatingSession.CreateSessionRequestDTO;
-import com.example.io_app.DTO.Session.CreatingSession.CreateSessionResponseDTO;
-import com.example.io_app.DTO.Session.CreatingSession.availableHoursResponseDTO;
+import com.example.io_app.DTO.Session.CreateSession.CreateSessionRequestDTO;
+import com.example.io_app.DTO.Session.CreateSession.CreateSessionResponseDTO;
+import com.example.io_app.DTO.Session.CreateSession.availableHoursResponseDTO;
 import com.example.io_app.DOMAIN.Session.Session;
 import com.example.io_app.DOMAIN.Session.SessionManager;
 import com.example.io_app.DTO.Session.*;
-import com.example.io_app.DTO.Session.CreatingSession.availableTimeSlotsDueDateRequestDTO;
+import com.example.io_app.DTO.Session.CreateSession.availableTimeSlotsDueDateRequestDTO;
+import com.example.io_app.DTO.Session.DeleteSession.DeleteSessionRequestDTO;
+import com.example.io_app.DTO.Session.DeleteSession.DeleteSessionResponseDTO;
 import com.example.io_app.DTO.Session.FindSession.FindSessionByFilmTitleRequestDTO;
 import com.example.io_app.DTO.Session.FindSession.FindSessionByFilmTitleResponseDTO;
 import com.example.io_app.DTO.Session.UpdateSession.UpdateSessionRequestDTO;
@@ -169,15 +170,12 @@ public class SessionService {
             availableTimeSlotsDueDateRequestDTO requestDto,
             int roomNumber
     ) {
-        // 1. Pobierz seanse dla danej daty
         List<Session> allSessionsForDate = sessionRepository.findSessionsByDate(requestDto.getDueDate());
 
-        // 2. Odfiltruj tylko te, które są w wybranej sali
         List<Session> sessions = allSessionsForDate.stream()
                 .filter(session -> session.getRoomNumber() == roomNumber)
                 .collect(Collectors.toList());
 
-        // Reszta logiki bez zmian:
         sessions.sort(Comparator.comparing(Session::getStartTime));
 
         LocalTime dayStart = LocalTime.of(10, 0);

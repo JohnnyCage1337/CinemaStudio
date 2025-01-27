@@ -4,8 +4,8 @@ import com.example.io_app.DOMAIN.Film.Film;
 import com.example.io_app.DOMAIN.Film.FilmManager;
 import com.example.io_app.DOMAIN.Film.FilmValidator;
 import com.example.io_app.DTO.Film.*;
-import com.example.io_app.DTO.Session.CreatingSession.getFilmDetailsRequestDTO;
-import com.example.io_app.DTO.Session.CreatingSession.getFilmDetailsResponseDTO;
+import com.example.io_app.DTO.Session.CreateSession.getFilmDetailsRequestDTO;
+import com.example.io_app.DTO.Session.CreateSession.getFilmDetailsResponseDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 
 
@@ -75,8 +75,6 @@ public class FilmService {
         return false;
     }
 
-
-
     public FindFilmResponseDTO findFilmUseCase(FindFilmRequestDTO requestDTO){
 
         List<Film> foundFilms = filmRepository.findByTitle(requestDTO.getTitle());
@@ -130,7 +128,6 @@ public class FilmService {
         // Sprawdzenie, czy nowy tytuł różni się od starego
         boolean isTitleChanged = !Objects.equals(requestDTO.getFilmTitle(), requestDTO.getNewFilmTitle());
 
-        // Jeśli tytuł został zmieniony, sprawdź, czy nowy tytuł nie jest już zajęty
         if (isTitleChanged && isFilmAlreadyExist(requestDTO.getNewFilmTitle())) {
             throw new IllegalArgumentException("Podany film jest już zapisany w bazie.");
         }

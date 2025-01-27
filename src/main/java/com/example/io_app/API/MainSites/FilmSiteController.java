@@ -51,7 +51,6 @@ public class FilmSiteController implements Initializable {
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
-        // Załaduj dane do TableView
         loadFilmData();
     }
 
@@ -89,18 +88,15 @@ public class FilmSiteController implements Initializable {
     @FXML
     public void handleCreateButton() {
         try {
-            // Wczytaj FXML dla formularza
             FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FilmWindows/CreateFilm.fxml"));
             Parent root = loader.load();
 
-            // Pobierz kontroler formularza i ustaw callback, jeśli potrzeba
             CreateFilmController createFilmController = loader.getController();
             createFilmController.setOnClose(() -> {
                 loadFilmData();
                 /*System.out.println("Zamknięto okno i można odświeżyć widok");*/
             });
 
-            // Stwórz nowe okno (Stage)
             Stage stage = new Stage();
             stage.setTitle("Dodaj nowy film");
             stage.setScene(new Scene(root));
@@ -165,7 +161,6 @@ public class FilmSiteController implements Initializable {
             //przekazanie aktualnego kontrolera (strony głównej filmów) od dziecka - kontroler "Znajdź film"
             findFilmController.setFilmSiteController(this);
 
-            // Stwórz nowe okno (Stage)
             Stage stage = new Stage();
             stage.setTitle("Znajdź film");
             stage.setScene(new Scene(root));
@@ -180,14 +175,12 @@ public class FilmSiteController implements Initializable {
     @FXML
     public void handleUpdateButton() {
         try {
-            // Pobierz zaznaczony film
             FilmDTO selectedFilm = filmTableView.getSelectionModel().getSelectedItem();
             if (selectedFilm == null) {
                 showAlert("Błąd", "Nie zaznaczono filmu.");
                 return;
             }
 
-            // Wczytaj FXML dla formularza
             FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FilmWindows/UpdateFilm.fxml"));
             Parent root = loader.load();
 
@@ -206,7 +199,6 @@ public class FilmSiteController implements Initializable {
                 loadFilmData(); // Odśwież widok po zamknięciu okna
             });
 
-            // Stwórz nowe okno (Stage)
             Stage stage = new Stage();
             stage.setTitle("Modyfikuj film");
             stage.setScene(new Scene(root));

@@ -79,7 +79,7 @@ public class FilmRepository {
         return films;
     }
 
-    // (Opcjonalnie) Szukanie filmu po tytule
+    //Szukanie filmu po tytule
     public List<Film> findByTitle(String titleToFind) {
         String selectSql = "SELECT * FROM films WHERE LOWER(title) LIKE LOWER(?);";
 

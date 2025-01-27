@@ -1,4 +1,4 @@
-package com.example.io_app.DTO.Session.CreatingSession;
+package com.example.io_app.DTO.Session.CreateSession;
 
 import java.time.LocalTime;
 import java.util.List;

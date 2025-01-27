@@ -18,7 +18,6 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         mainStage = stage;
 
-        // Ładujemy plik FXML (zmień ścieżkę, jeśli masz inny układ katalogów)
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/io_app/MainSites/SessionSite.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());

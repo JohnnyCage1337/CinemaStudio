@@ -4,9 +4,8 @@ import com.example.io_app.API.MainSites.FilmSiteController;
 import com.example.io_app.APPLICATION.FilmService;
 import com.example.io_app.APPLICATION.SessionService;
 import com.example.io_app.DOMAIN.Film.FilmValidator;
-import com.example.io_app.DTO.Session.CreatingSession.CreateSessionRequestDTO;
-import com.example.io_app.DTO.Session.CreatingSession.availableTimeSlotsDueDateRequestDTO;
-import com.example.io_app.DTO.Session.CreatingSession.getFilmDetailsRequestDTO;
+import com.example.io_app.DTO.Session.CreateSession.availableTimeSlotsDueDateRequestDTO;
+import com.example.io_app.DTO.Session.CreateSession.getFilmDetailsRequestDTO;
 import com.example.io_app.DTO.Session.UpdateSession.UpdateSessionRequestDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +65,6 @@ public class UpdateSessionController {
         // Wypełnienie roomComboBox
         roomComboBox.getItems().addAll(hallCapacityMap.keySet());
 
-        // Zablokuj wszystko na starcie, poza filmIdField
         filmTitleField.setDisable(true);
         datePickerField.setDisable(true);
         timeBeginComboBox.setDisable(true);
@@ -82,7 +80,6 @@ public class UpdateSessionController {
     }
 
 
-
     public void setOnClose(Runnable onClose) {
         this.onClose = onClose;
     }
@@ -90,21 +87,16 @@ public class UpdateSessionController {
     @FXML
     public void displayFilmDataBaseButton() {
         try {
-            // Załaduj plik FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/io_app/SessionWindows/FilmSiteCreateSessionCase.fxml"));
 
-            // Ustaw kontroler, jeśli wymagane (opcjonalnie)
             FilmSiteController controller = loader.getController();
 
-            // Załaduj widok
             Parent root = loader.load();
 
-            // Stwórz nowe okno
             Stage stage = new Stage();
             stage.setTitle("Film Database");
             stage.setScene(new Scene(root));
 
-            // Pokaż nowe okno
             stage.show();
 
         } catch (Exception e) {
@@ -176,26 +168,20 @@ public class UpdateSessionController {
         Integer roomNumber = roomComboBox.getValue();
         if (roomNumber == null) return;
 
-        // Pobierz wolne sloty dla danej daty i sali
         var availableHours = sessionService.getAvailableTimeSlotsDueDate(
                 new availableTimeSlotsDueDateRequestDTO(date),
                 roomNumber // NOWY parametr
         );
 
-        // Wyczyść ComboBox
         timeBeginComboBox.getItems().clear();
 
-        // Dodaj do ComboBox tylko sloty pasujące do czasu trwania filmu,
-        // jeśli chcesz filtrować już tutaj. Możesz też filtrować w serwisie:
         availableHours.getOpenTimeSlots()
                 .stream()
                 .filter(timeSlot -> isSlotAvailableForFilm(timeSlot, availableHours.getOpenTimeSlots(), filmDuration))
                 .forEach(filteredSlot -> timeBeginComboBox.getItems().add(filteredSlot.toString()));
 
-        // Odblokuj wybór godziny
         timeBeginComboBox.setDisable(false);
 
-        // Zablokuj timeEndField do momentu wyboru godziny
         timeEndField.clear();
     }
 
@@ -215,7 +201,6 @@ public class UpdateSessionController {
 
         timeEndField.setText(endTime.toString());
 
-        // Możesz odblokować pole priceField dopiero po wybraniu godziny:
         priceField.setDisable(false);
     }
 
@@ -256,10 +241,6 @@ public class UpdateSessionController {
     @FXML
     public void resetFields(){
 
-
-
-
-        // Zablokowanie pól
         filmTitleField.setDisable(true);
         datePickerField.setDisable(true);
         timeBeginComboBox.setDisable(true);
@@ -268,7 +249,6 @@ public class UpdateSessionController {
         numberOfSeatsField.setDisable(true);
         priceField.setDisable(true);
 
-        // Odblokowanie pola ID filmu
         filmIdField.setDisable(false);
         filmIdField.setText(String.valueOf(dto.getFilmID()));
         filmTitleField.setText("");

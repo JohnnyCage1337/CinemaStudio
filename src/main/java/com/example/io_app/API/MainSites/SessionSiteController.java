@@ -1,17 +1,13 @@
 package com.example.io_app.API.MainSites;
 
 import com.example.io_app.API.Application;
-import com.example.io_app.API.FilmWindows.UpdateFilmController;
 import com.example.io_app.API.SessionWindows.CreateSessionController;
 import com.example.io_app.API.SessionWindows.FindSessionByFilmTitleController;
 import com.example.io_app.API.SessionWindows.UpdateSessionController;
 import com.example.io_app.APPLICATION.FilmService;
 import com.example.io_app.APPLICATION.SessionService;
-import com.example.io_app.DTO.Film.DeleteFilmRequestDTO;
-import com.example.io_app.DTO.Film.FilmDTO;
 import com.example.io_app.DTO.Film.FindFilmRequestDTO;
-import com.example.io_app.DTO.Film.UpdateFilmRequestDTO;
-import com.example.io_app.DTO.Session.DeleteSessionRequestDTO;
+import com.example.io_app.DTO.Session.DeleteSession.DeleteSessionRequestDTO;
 import com.example.io_app.DTO.Session.FindSession.FindSessionByFilmTitleRequestDTO;
 import com.example.io_app.DTO.Session.FindSession.FindSessionByFilmTitleResponseDTO;
 import com.example.io_app.DTO.Session.SessionDTO;
@@ -77,7 +73,6 @@ public class SessionSiteController implements Initializable {
         allSeatsColumn.setCellValueFactory(new PropertyValueFactory<>("allSeats"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        // Załaduj dane do TableView
         loadSessionData(datePicker.getValue());
 
         isLoadedAll = false;
@@ -123,15 +118,12 @@ public class SessionSiteController implements Initializable {
     @FXML
     public void handleCreateButton() {
         try {
-            // Wczytaj FXML dla formularza tworzenia seansu
             FXMLLoader loader = new FXMLLoader(
                     Application.class.getResource("/com/example/io_app/SessionWindows/CreateSession.fxml")
             );
             Parent root = loader.load();
 
-            // Pobierz kontroler, np. CreateSessionController
             CreateSessionController createSessionController = loader.getController();
-            // Jeśli chcesz odświeżyć tabelę po zamknięciu okna, ustaw callback
             createSessionController.setOnClose(() -> {
                 if(isLoadedAll) {
                     loadSessionData();
@@ -141,13 +133,12 @@ public class SessionSiteController implements Initializable {
                 }
             });
 
-            // Stwórz nowe okno (Stage)
             Stage stage = new Stage();
             stage.setTitle("Dodaj nowy seans");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL); // Okno modalne
             stage.initOwner(Application.getMainStage());
-            stage.showAndWait(); // Poczekaj na zamknięcie okna
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -156,20 +147,15 @@ public class SessionSiteController implements Initializable {
     @FXML
     public void handleFindButton() {
         try {
-            // Wczytaj FXML dla formularza
             FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/SessionWindows/FindSessionByFilmTitle.fxml"));
             Parent root = loader.load();
 
             // Pobranie kontrolera formularza i ew. ustawienie callback, jeśli potrzeba
             FindSessionByFilmTitleController findSessionByFilmTitleController = loader.getController();
-            /*findFilmController.setOnClose(() -> {
-                loadFilmData();
-            });*/
 
             //przekazanie aktualnego kontrolera (strony głównej seansów) od dziecka - kontroler "Znajdź seans"
             findSessionByFilmTitleController.setSessionSiteController(this);
 
-            // Stwórz nowe okno (Stage)
             Stage stage = new Stage();
             stage.setTitle("Znajdź seans");
             stage.setScene(new Scene(root));
@@ -244,9 +230,6 @@ public class SessionSiteController implements Initializable {
         loadSessionData(datePicker.getValue());
         isLoadedAll = false;
         }
-
-
-
     }
     @FXML
     private void showAlert(String title, String message) {
@@ -259,17 +242,14 @@ public class SessionSiteController implements Initializable {
 
     public void updateSessionButton(){
         try {
-            // Pobierz zaznaczony film
             var selectedSession = sessionTableView.getSelectionModel().getSelectedItem();
             if (selectedSession == null) {
                 showAlert("Błąd", "Nie wybrano żadnego seansu");
                 return;
             }
 
-            // Wczytaj FXML dla formularza
             FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/SessionWindows/UpdateSession.fxml"));
             Parent root = loader.load();
-
 
             int id = filmService.findFilmUseCase(new FindFilmRequestDTO(selectedSession.getFilmTitle())).getFoundFilm().getId();
 
@@ -283,7 +263,6 @@ public class SessionSiteController implements Initializable {
                     selectedSession.getAvailableSeats(),
                     selectedSession.getPrice());
 
-            // Pobierz kontroler formularza i ustaw film
             UpdateSessionController controller = loader.getController();
             controller.setDto(dto); // Przekaż obiekt seansu do edycji
             controller.setOnClose(() -> {
@@ -295,7 +274,6 @@ public class SessionSiteController implements Initializable {
                 }
             });
 
-            // Stwórz nowe okno (Stage)
             Stage stage = new Stage();
             stage.setTitle("Modyfikuj seans");
             stage.setScene(new Scene(root));

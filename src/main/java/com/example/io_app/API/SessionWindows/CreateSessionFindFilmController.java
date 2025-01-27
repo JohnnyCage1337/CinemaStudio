@@ -52,7 +52,6 @@ public class CreateSessionFindFilmController  implements Initializable {
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
-        // Załaduj dane do TableView
         loadFilmData();
     }
 

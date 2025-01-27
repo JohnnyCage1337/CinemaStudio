@@ -14,21 +14,16 @@ public class UpdateFilmController {
 
     @FXML    private TextField titleField;
     @FXML    private TextField durationField;
-    @FXML    private ComboBox<String> genreComboBox; // ComboBox zamiast TextField
+    @FXML    private ComboBox<String> genreComboBox;
 
     private UpdateFilmRequestDTO requestDTO;  // Obiekt (dto) filmu do edycji
     private Runnable onClose;             // Callback po zamknięciu okna
 
-    /**
-     * Metoda inicjalizująca (wywoływana automatycznie po załadowaniu FXML),
-     * w której możemy ustawić listę dostępnych gatunków.
-     */
     @FXML
     public void initialize() {
 
         filmService = new FilmService();
 
-        // Dodaj przykładowe gatunki (lub pobierz z bazy, jeśli potrzebne)
         genreComboBox.getItems().addAll(
                 "Akcja",
                 "Komedia",
@@ -43,10 +38,6 @@ public class UpdateFilmController {
         this.onClose = onClose;
     }
 
-    /**
-     * Metoda do ustawienia danych filmu w kontrolerze (z DTO).
-     * Wywoływana np. bezpośrednio po otwarciu okna.
-     */
     public void setFilm(UpdateFilmRequestDTO film) {
         this.requestDTO = film;
 
@@ -95,7 +86,6 @@ public class UpdateFilmController {
         catch (Exception e) {
             showAlert("Błąd", e.getMessage());
         }
-        // Jeśli przekazano callback (np. odświeżenie listy w głównym oknie), wywołaj go
         if (onClose != null) {
             onClose.run();
         }
