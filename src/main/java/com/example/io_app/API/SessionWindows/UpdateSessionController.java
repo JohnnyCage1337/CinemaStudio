@@ -120,14 +120,17 @@ public class UpdateSessionController {
             int id = Integer.parseInt(filmIdField.getText());
             FilmValidator.validateId(id);
 
+            // Wywołanie serwisu
             var dto = filmService.findFilmByIdUseCase(new getFilmDetailsRequestDTO(id));
+
+            // Ustawienie pól widoku
             filmTitleField.setText(dto.getFilmTitle());
             filmDuration = dto.getFilmDuration();
 
-            // NOWE: odblokuj wybór sali (zamiast DatePicker)
+            // Odblokowanie wyboru sali
             roomComboBox.setDisable(false);
-
-            // Zablokuj samo pole filmIdField (żeby użytkownik nie zmieniał ID)
+            roomComboBox.setValue(null);
+            // Zablokowanie pola ID
             filmIdField.setDisable(true);
 
         } catch (NumberFormatException e) {
@@ -137,13 +140,12 @@ public class UpdateSessionController {
         }
     }
 
-    /**
-     * Metoda wywoływana po wybraniu sali z ComboBox.
-     * - Ustaw liczbę miejsc w polu (opcjonalnie)
-     * - Odblokuj DatePicker
-     */
+
+
     @FXML
     public void onRoomSelected() {
+        timeBeginComboBox.setDisable(true);
+        timeBeginComboBox.setValue(null);
         datePickerField.setValue(null);
         Integer selectedRoom = roomComboBox.getValue();
         if (selectedRoom == null) {
@@ -268,20 +270,14 @@ public class UpdateSessionController {
 
         // Odblokowanie pola ID filmu
         filmIdField.setDisable(false);
-
-        // Czyszczenie pól
-        filmTitleField.clear();
-        datePickerField.setValue(null);
-        timeBeginComboBox.getItems().clear();
-        timeBeginComboBox.setValue(null);
-        timeEndField.clear();
-
-        roomComboBox.setValue(null);
-        numberOfSeatsField.clear();
-        priceField.clear();
-
-        // Czyszczenie pola ID filmu
-        filmIdField.clear();
+        filmIdField.setText(String.valueOf(dto.getFilmID()));
+        filmTitleField.setText("");
+        datePickerField.setValue(dto.getDate());
+        timeBeginComboBox.setValue(dto.getStartTime().toString());
+        timeEndField.setText(String.valueOf(dto.getEndTime()));
+        roomComboBox.setValue(dto.getRoomNumber());
+        numberOfSeatsField.setText(String.valueOf(dto.getTotalSeats()));
+        priceField.setText(String.valueOf(dto.getPrice()));
     }
 
 }

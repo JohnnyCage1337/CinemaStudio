@@ -139,7 +139,7 @@ public class SessionService {
 
         LocalTime dayStart = LocalTime.of(10, 0);
         LocalTime dayEnd = isWeekend(requestDto.getDueDate()) ?
-                LocalTime.of(21, 0) : LocalTime.of(18, 0);
+                LocalTime.of(23, 0) : LocalTime.of(20, 0);
 
         List<LocalTime> freeTimeSlots = new ArrayList<>();
         LocalTime current = dayStart;

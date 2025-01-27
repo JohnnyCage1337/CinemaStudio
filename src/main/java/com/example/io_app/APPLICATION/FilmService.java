@@ -71,12 +71,19 @@ public class FilmService {
         return new FindFilmResponseDTO(dto);
     }
 
-    public getFilmDetailsResponseDTO findFilmByIdUseCase(getFilmDetailsRequestDTO requestDTO){
-
+    public getFilmDetailsResponseDTO findFilmByIdUseCase(getFilmDetailsRequestDTO requestDTO) {
+        // Pobieranie filmu z bazy danych
         Film film = filmRepository.findById(requestDTO.getFilmId());
-        var dtoResponse = new getFilmDetailsResponseDTO(film.getDuration(), film.getTitle());
-        return dtoResponse;
+
+        // Sprawdzenie, czy film istnieje
+        if (film == null) {
+            throw new IllegalArgumentException("Nie odnaleziono filmu o podanym ID: " + requestDTO.getFilmId());
+        }
+
+        // Zwrócenie poprawnego DTO, jeśli film istnieje
+        return new getFilmDetailsResponseDTO(film.getDuration(), film.getTitle());
     }
+
 
     public DeleteFilmResponseDTO deleteFilmUseCase(DeleteFilmRequestDTO requestDTO){
         return new DeleteFilmResponseDTO(filmRepository.deleteByID(requestDTO.getFilmDTO().getId()));
