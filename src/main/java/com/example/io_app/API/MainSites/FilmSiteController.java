@@ -39,6 +39,8 @@ public class FilmSiteController implements Initializable {
     @FXML    private TableColumn<FilmDTO, String> genreColumn;
     @FXML    private TableColumn<FilmDTO, Integer> durationColumn;
 
+    private Runnable onClose;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -164,9 +166,9 @@ public class FilmSiteController implements Initializable {
 
             // Pobranie kontrolera formularza i ew. ustawienie callback, jeśli potrzeba
             FindFilmController findFilmController = loader.getController();
-            /*findFilmController.setOnClose(() -> {
+            findFilmController.setOnClose(() -> {
                 loadFilmData();
-            });*/
+            });
 
             //przekazanie aktualnego kontrolera (strony głównej filmów) od dziecka - kontroler "Znajdź film"
             findFilmController.setFilmSiteController(this);
@@ -243,6 +245,10 @@ public class FilmSiteController implements Initializable {
 
     public void handleAllFilmsButton(){
         loadFilmData();
+    }
+
+    public void setOnClose(Runnable onClose) {
+        this.onClose = onClose;
     }
 
 

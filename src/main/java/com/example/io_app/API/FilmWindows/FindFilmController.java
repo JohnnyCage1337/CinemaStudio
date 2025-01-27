@@ -8,13 +8,14 @@ import javafx.stage.Stage;
 public class FindFilmController {
 
     @FXML    private TextField searchField;
-
+    private Runnable onClose;
     //kontroler rodzica
     private FilmSiteController filmSiteController;
 
     public void setFilmSiteController(FilmSiteController filmSiteController) {
         this.filmSiteController = filmSiteController;
     }
+
 
     @FXML
     public void findFilm() {
@@ -37,4 +38,10 @@ public class FindFilmController {
         // zamknięcie obecne okno dialogowe
         ((Stage) searchField.getScene().getWindow()).close();
     }
+
+
+    public void setOnClose(Runnable onClose) {
+        this.onClose = onClose;
+    }
+
 }

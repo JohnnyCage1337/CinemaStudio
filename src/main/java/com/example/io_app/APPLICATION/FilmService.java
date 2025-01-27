@@ -57,9 +57,6 @@ public class FilmService {
                         film.getDuration()))
                 .collect(Collectors.toList());
 
-        if(dtos.size() == 1){
-            return new FindFilmResponseDTO(dtos.get(0));
-        }
 
         return new FindFilmResponseDTO(dtos);
     }

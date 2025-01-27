@@ -14,7 +14,6 @@
             <Region prefHeight="25.0" prefWidth="28.0" HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Wszystkie" />
             <Region prefHeight="25.0" prefWidth="13.0" HBox.hgrow="ALWAYS" />
-            <Button minWidth="102.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Wyjdź" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </top>
