@@ -14,31 +14,35 @@ public class FilmManager {
     }
 
     public Film createFilm(String title, String genre, int duration){
+        if(!FilmValidator.isDurationCorrect(duration)){
+            throw new IllegalArgumentException("Duration is incorrect");
+        }
+        if(!FilmValidator.isGenreCorrect(genre)){
+            throw new IllegalArgumentException("Genre is incorrect");
+        }
         return new Film(title, genre, duration);
     }
 
-    public  Film readFilmByName(String title) {
-        return filmRepository.findAll().stream()
-                .filter(film -> film.getTitle().equalsIgnoreCase(title))
-                .findFirst()
-                .orElse(null);
+
+    public void setTitle(Film film,String title){
+        //walidacja domenowa tytulu
+        film.setTitle(title);
+
     }
 
-    public List<Film> readAllFilms() {
-        return filmRepository.findAll();
-    }
-
-    public boolean updateFilm(String title, int duration, String description, String genre, String rate, String director, String language) {
-        Film film = readFilmByName(title);
-        if (film != null) {
-            film.setDuration(duration);
-            film.setGenre(genre);
-            return true;
+    public void setDuration(Film film,int duration){
+        if(!FilmValidator.isDurationCorrect(duration)){
+            throw new IllegalArgumentException("Duration is incorrect");
         }
-        return false;
+        film.setDuration(duration);
+
     }
 
-    public boolean deleteFilm(int id) {
-        return filmRepository.deleteByID(id);
+    public void setGenre(Film film,String genre){
+        if(!FilmValidator.isGenreCorrect(genre)){
+            throw new IllegalArgumentException("Genre is incorrect");
+        }
+        film.setGenre(genre);
     }
+
 }

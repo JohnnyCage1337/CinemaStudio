@@ -78,10 +78,6 @@ public class UpdateFilmController {
         int duration;
         try {
             duration = Integer.parseInt(durationField.getText());
-            if (duration <= 0) {
-                showAlert("Błąd", "Czas trwania musi być większy niż 0!");
-                return;
-            }
         } catch (NumberFormatException e) {
             showAlert("Błąd", "Czas trwania musi być liczbą!");
             return;
@@ -92,9 +88,13 @@ public class UpdateFilmController {
         requestDTO.setNewFilmGenre(selectedGenre);
         requestDTO.setNewDuration(duration);
 
-        // Zapisanie zmodyfikowanego filmu przez serwis
-        filmService.updateFilmUseCase(requestDTO);
-
+        try {
+            // Zapisanie zmodyfikowanego filmu przez serwis
+            filmService.updateFilmUseCase(requestDTO);
+        }
+        catch (Exception e) {
+            showAlert("Błąd", e.getMessage());
+        }
         // Jeśli przekazano callback (np. odświeżenie listy w głównym oknie), wywołaj go
         if (onClose != null) {
             onClose.run();

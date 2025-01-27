@@ -119,12 +119,7 @@ public class FilmSiteController implements Initializable {
 
         // Obsługa braku zaznaczenia filmu
         if (selectedFilm == null) {
-            Alert noSelectionAlert = new Alert(Alert.AlertType.INFORMATION);
-            noSelectionAlert.setTitle("Brak zaznaczenia");
-            noSelectionAlert.setHeaderText("Nie wybrano żadnego filmu do usunięcia");
-            noSelectionAlert.setContentText("Zaznacz film na liście, zanim klikniesz 'Usuń'.");
-            noSelectionAlert.showAndWait();
-            return;
+          showAlert("Błąd", "Niezaznaczono filmu");
         }
 
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -142,12 +137,9 @@ public class FilmSiteController implements Initializable {
             if (success) {
                 // Jeśli usunięcie się powiodło, odświeżamy dane w tabeli
                 loadFilmData();
-            } else {
-                System.out.println("Nie udało się usunąć filmu: " + selectedFilm.getTitle());
+            }else {
+                showAlert("Błąd", "Nie udalo sie usunąć filmu.");
             }
-        } else {
-            // Użytkownik anulował usunięcie
-            System.out.println("Usunięcie filmu anulowane.");
         }
     }
 
@@ -191,7 +183,7 @@ public class FilmSiteController implements Initializable {
             // Pobierz zaznaczony film
             FilmDTO selectedFilm = filmTableView.getSelectionModel().getSelectedItem();
             if (selectedFilm == null) {
-                System.out.println("Żaden film nie został zaznaczony.");
+                showAlert("Błąd", "Nie zaznaczono filmu.");
                 return;
             }
 
@@ -199,9 +191,10 @@ public class FilmSiteController implements Initializable {
             FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/FilmWindows/UpdateFilm.fxml"));
             Parent root = loader.load();
 
-
+            //przekazujemy dane filmu do UpdateFilmController
             var dto = new UpdateFilmRequestDTO(
                     selectedFilm.getId(),
+                    selectedFilm.getTitle(),
                     selectedFilm.getTitle(),
                     selectedFilm.getGenre(),
                     selectedFilm.getDuration());
@@ -231,15 +224,12 @@ public class FilmSiteController implements Initializable {
 
         List<FilmDTO> foundFilms = responseDTO.getFoundFilms();
 
-        if (foundFilms != null) {
+        if (!foundFilms.isEmpty()) {
             // utworzenie listy z obiektami, jeśli znaleziono pasujące
             ObservableList<FilmDTO> foundFilmList = FXCollections.observableArrayList(foundFilms);
             filmTableView.setItems(foundFilmList);
         } else {
-            // Nic nie znaleziono - wyświetlić alert lub wyczyścić tabelę
-            filmTableView.setItems(FXCollections.observableArrayList());
-            // Lub:
-            // showAlert("Brak wyników", "Nie znaleziono filmu o tytule: " + filmTitle);
+            showAlert("Brak wyników", "Nie znaleziono filmu o tytule: " + filmTitleFragment);
         }
     }
 
@@ -250,6 +240,12 @@ public class FilmSiteController implements Initializable {
     public void setOnClose(Runnable onClose) {
         this.onClose = onClose;
     }
-
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR); // Tworzymy alert
+        alert.setTitle(title); // Ustawiamy tytuł
+        alert.setHeaderText(null); // Brak nagłówka
+        alert.setContentText(message); // Ustawiamy treść wiadomości
+        alert.showAndWait(); // Wyświetlamy alert
+    }
 
 }

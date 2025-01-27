@@ -36,7 +36,7 @@ public class FilmRepository {
     }
 
     // Zapisywanie nowego filmu do bazy (INSERT)
-    public void save(Film film) {
+    public boolean save(Film film) {
         String insertSql = "INSERT INTO films (title, genre, duration) VALUES (?, ?, ?);";
 
         try (Connection connection = DriverManager.getConnection(URL);
@@ -47,9 +47,10 @@ public class FilmRepository {
             pstmt.setInt(3, film.getDuration());
 
             pstmt.executeUpdate();
-
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 

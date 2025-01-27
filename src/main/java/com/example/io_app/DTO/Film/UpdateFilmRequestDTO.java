@@ -2,12 +2,14 @@ package com.example.io_app.DTO.Film;
 
 public class UpdateFilmRequestDTO {
     private int movieID;
+    private String filmTitle;
     private String newFilmTitle;
     private String newFilmGenre;
     private int newDuration;
 
-    public UpdateFilmRequestDTO(int movieID, String newFilmTitle, String newFilmGenre, int newDuration)
+    public UpdateFilmRequestDTO(int movieID, String filmTitle ,String newFilmTitle, String newFilmGenre, int newDuration)
     {
+        this.filmTitle = filmTitle;
         this.movieID = movieID;
         this.newFilmTitle = newFilmTitle;
         this.newFilmGenre = newFilmGenre;
@@ -44,5 +46,13 @@ public class UpdateFilmRequestDTO {
 
     public void setNewDuration(int newDuration) {
         this.newDuration = newDuration;
+    }
+
+    public void setFilmTitle(String filmTitle) {
+        this.filmTitle = filmTitle;
+    }
+
+    public String getFilmTitle() {
+        return filmTitle;
     }
 }

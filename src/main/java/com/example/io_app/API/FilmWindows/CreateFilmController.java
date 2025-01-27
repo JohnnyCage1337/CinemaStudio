@@ -64,10 +64,6 @@ public class CreateFilmController {
         int duration;
         try {
             duration = Integer.parseInt(durationField.getText());
-            if (duration <= 0) {
-                showAlert("Błąd", "Czas trwania musi być większy niż 0!");
-                return;
-            }
         } catch (NumberFormatException e) {
             showAlert("Błąd", "Czas trwania musi być liczbą!");
             return;
@@ -75,12 +71,15 @@ public class CreateFilmController {
 
         // Tworzenie DTO + wywołanie serwisu
         CreateFilmRequestDTO createFilmRequestDTO = new CreateFilmRequestDTO(title, genre, duration);
-        filmService.createFilmUseCase(createFilmRequestDTO);
-
-        if (onClose != null) {
-            onClose.run(); // Wywołaj callback, np. odświeżenie tabeli
+        try {
+            filmService.createFilmUseCase(createFilmRequestDTO);
+            if (onClose != null) {
+                onClose.run();
+            }
+            closeWindow();
+        } catch (IllegalArgumentException e) {
+            showAlert("Błąd", e.getMessage());
         }
-        closeWindow();
     }
 
     @FXML
