@@ -201,6 +201,7 @@ public class SessionSiteController implements Initializable {
     @FXML
     public void handleAllSessions(){
         loadSessionData();
+        isLoadedAll = true;
         if(datePicker.getValue() != null) {
             datePicker.setValue(null);
         }
@@ -210,7 +211,11 @@ public class SessionSiteController implements Initializable {
     public void handleSessionsByDate(){
         if(datePicker.getValue() != null) {
         loadSessionData(datePicker.getValue());
+        isLoadedAll = false;
         }
+
+
+
     }
     @FXML
     private void showAlert(String title, String message) {

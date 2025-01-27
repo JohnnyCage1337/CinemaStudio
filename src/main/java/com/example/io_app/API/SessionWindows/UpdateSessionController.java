@@ -227,7 +227,9 @@ public class UpdateSessionController {
         int numberOfSeats = Integer.parseInt(numberOfSeatsField.getText());
         double price = Double.parseDouble(priceField.getText());
 
-        sessionService.updateSessionUseCase(dto);
+        var requestDTO = new UpdateSessionRequestDTO(dto.getSessionId(),filmId, sessionDate, timeBegin, timeEnd,roomNumber,numberOfSeats,price);
+
+        sessionService.updateSessionUseCase(requestDTO);
 
         if (onClose != null) {
             onClose.run();

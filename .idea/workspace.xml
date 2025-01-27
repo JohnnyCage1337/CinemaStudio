@@ -5,37 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac4fa122-6007-4f23-8db0-067442b8bfb9" name="Changes" comment="Dodanie formularza do dodawania filmu">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionFindFilmController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/UpdateSessionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Session/TimeSlot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/CreateSessionResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/availableHoursResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/availableTimeSlotsDueDateRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/getFilmDetailsRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/getFilmDetailsResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/UpdateSession/UpdateSessionRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/SessionWindows/FilmSiteCreateSessionCase.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/SessionWindows/UpdateSession.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataRepository.db" beforeDir="false" afterPath="$PROJECT_DIR$/dataRepository.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/FindFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/FindFilmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/UpdateFilmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/FilmWindows/UpdateFilmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/FilmSiteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/FilmService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film/FilmValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DOMAIN/Film/FilmValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/FindFilmRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/FindFilmRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/FindFilmResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Film/FindFilmResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreateSessionRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/CreatingSession/CreateSessionRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/SessionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/DTO/Session/SessionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/FilmRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/SessionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/io_app/INFRASTRUCTURE/SessionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/FilmSite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/FilmSite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/SessionSite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/MainSites/SessionSite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/io_app/SessionWindows/CreateSession.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/io_app/SessionWindows/CreateSession.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +59,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Application.executor": "Run",
+    "Application.Application.executor": "Debug",
     "Application.HelloApplication.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -194,7 +165,8 @@
       <workItem from="1737553623884" duration="6193000" />
       <workItem from="1737568297401" duration="1843000" />
       <workItem from="1737879269406" duration="13953000" />
-      <workItem from="1737905737538" duration="22671000" />
+      <workItem from="1737905737538" duration="22973000" />
+      <workItem from="1737970533019" duration="1516000" />
     </task>
     <task id="LOCAL-00001" summary="Szkielet warstwy domenowej">
       <option name="closed" value="true" />
@@ -298,6 +270,11 @@
           <line>11</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java</url>
+          <line>259</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/CreateSessionController.java</url>
           <line>215</line>
@@ -308,13 +285,22 @@
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/MainSites/SessionSiteController.java</url>
-          <line>201</line>
-          <properties class="com.example.io_app.API.MainSites.SessionSiteController" method="handleAllSessions">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/API/SessionWindows/UpdateSessionController.java</url>
+          <line>220</line>
+          <properties class="com.example.io_app.API.SessionWindows.UpdateSessionController" method="updateSession">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="18" />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/io_app/APPLICATION/SessionService.java</url>
+          <line>183</line>
+          <properties class="com.example.io_app.APPLICATION.SessionService" method="updateSessionUseCase">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
