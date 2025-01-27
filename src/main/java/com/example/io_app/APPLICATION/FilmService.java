@@ -3,8 +3,8 @@ package com.example.io_app.APPLICATION;
 import com.example.io_app.DOMAIN.Film.Film;
 import com.example.io_app.DOMAIN.Film.FilmManager;
 import com.example.io_app.DTO.Film.*;
-import com.example.io_app.DTO.Session.CreatingSession.getFilmDetailsRequestDTO;
-import com.example.io_app.DTO.Session.CreatingSession.getFilmDetailsResponseDTO;
+import com.example.io_app.DTO.Session.CreateSession.getFilmDetailsRequestDTO;
+import com.example.io_app.DTO.Session.CreateSession.getFilmDetailsResponseDTO;
 import com.example.io_app.INFRASTRUCTURE.FilmRepository;
 
 
@@ -66,14 +66,14 @@ public class FilmService {
 
     public FindFilmResponseDTO findFilmByIdUseCase(FindFilmRequestDTO requestDTO){
 
-       Film film = filmRepository.findById(requestDTO.getId());
+       Film film = filmRepository.findByID(requestDTO.getId());
         FilmDTO dto = new FilmDTO(film.getId(), film.getTitle(), film.getGenre(), film.getDuration());
         return new FindFilmResponseDTO(dto);
     }
 
     public getFilmDetailsResponseDTO findFilmByIdUseCase(getFilmDetailsRequestDTO requestDTO){
 
-        Film film = filmRepository.findById(requestDTO.getFilmId());
+        Film film = filmRepository.findByID(requestDTO.getFilmId());
         var dtoResponse = new getFilmDetailsResponseDTO(film.getDuration(), film.getTitle());
         return dtoResponse;
     }

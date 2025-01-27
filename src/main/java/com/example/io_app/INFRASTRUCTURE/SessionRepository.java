@@ -229,6 +229,70 @@ public class SessionRepository {
         return session;
     }
 
+    public List<Session> findByFilmID(int filmID) {
+        String selectSql = "SELECT * FROM sessions WHERE film_id = ?;";
+        List<Session> sessions = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = connection.prepareStatement(selectSql)) {
+
+            pstmt.setInt(1, filmID);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    int filmId = rs.getInt("film_id");
+                    String dateStr = rs.getString("show_date");
+                    String startTimeStr = rs.getString("start_time");
+                    String endTimeStr = rs.getString("end_time");
+                    int roomNumber = rs.getInt("room_number");
+                    int availableSeats = rs.getInt("available_seats");
+                    int totalSeats = rs.getInt("total_seats");
+                    double price = rs.getDouble("price");
+
+                    // Konwersja dateStr -> LocalDate
+                    LocalDate dateObj = null;
+                    try {
+                        dateObj = LocalDate.parse(dateStr, DATE_FORMATTER);
+                    } catch (DateTimeParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Konwersja start/end -> LocalTime
+                    LocalTime startTime = null;
+                    LocalTime endTime = null;
+                    try {
+                        startTime = LocalTime.parse(startTimeStr, TIME_FORMATTER);
+                        endTime   = LocalTime.parse(endTimeStr, TIME_FORMATTER);
+                    } catch (DateTimeParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Tworzymy obiekt Session
+                    Session session = new Session(
+                            id,
+                            filmId,
+                            dateObj,
+                            startTime,
+                            endTime,
+                            roomNumber,
+                            availableSeats,
+                            totalSeats,
+                            price
+                    );
+
+                    // Dodajemy sesję do listy
+                    sessions.add(session);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sessions;
+    }
+
     public boolean deleteByID(int id) {
         String deleteSql = "DELETE FROM sessions WHERE id = ?;";
         try (Connection connection = DriverManager.getConnection(URL);

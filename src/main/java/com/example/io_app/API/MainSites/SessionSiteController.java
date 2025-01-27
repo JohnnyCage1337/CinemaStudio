@@ -1,16 +1,17 @@
 package com.example.io_app.API.MainSites;
 
 import com.example.io_app.API.Application;
-import com.example.io_app.API.FilmWindows.UpdateFilmController;
+import com.example.io_app.API.FilmWindows.FindFilmController;
 import com.example.io_app.API.SessionWindows.CreateSessionController;
+import com.example.io_app.API.SessionWindows.FindSessionByFilmTitleController;
 import com.example.io_app.API.SessionWindows.UpdateSessionController;
 import com.example.io_app.APPLICATION.FilmService;
 import com.example.io_app.APPLICATION.SessionService;
-import com.example.io_app.DTO.Film.DeleteFilmRequestDTO;
 import com.example.io_app.DTO.Film.FilmDTO;
 import com.example.io_app.DTO.Film.FindFilmRequestDTO;
-import com.example.io_app.DTO.Film.UpdateFilmRequestDTO;
-import com.example.io_app.DTO.Session.DeleteSessionRequestDTO;
+import com.example.io_app.DTO.Session.DeleteSession.DeleteSessionRequestDTO;
+import com.example.io_app.DTO.Session.FindSession.FindSessionByFilmTitleRequestDTO;
+import com.example.io_app.DTO.Session.FindSession.FindSessionByFilmTitleResponseDTO;
 import com.example.io_app.DTO.Session.SessionDTO;
 import com.example.io_app.DTO.Session.UpdateSession.UpdateSessionRequestDTO;
 import javafx.application.Platform;
@@ -151,6 +152,34 @@ public class SessionSiteController implements Initializable {
     }
 
     @FXML
+    public void handleFindButton() {
+        try {
+            // Wczytaj FXML dla formularza
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("/com/example/io_app/SessionWindows/FindSessionByFilmTitle.fxml"));
+            Parent root = loader.load();
+
+            // Pobranie kontrolera formularza i ew. ustawienie callback, jeśli potrzeba
+            FindSessionByFilmTitleController findSessionByFilmTitleController = loader.getController();
+            /*findFilmController.setOnClose(() -> {
+                loadFilmData();
+            });*/
+
+            //przekazanie aktualnego kontrolera (strony głównej seansów) od dziecka - kontroler "Znajdź seans"
+            findSessionByFilmTitleController.setSessionSiteController(this);
+
+            // Stwórz nowe okno (Stage)
+            Stage stage = new Stage();
+            stage.setTitle("Znajdź seans");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL); // Okno modalne
+            stage.initOwner(Application.getMainStage());
+            stage.showAndWait(); // Poczekaj na zamknięcie okna
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void handleDeleteButton(){
 
         SessionDTO selectedSession = sessionTableView.getSelectionModel().getSelectedItem();
@@ -213,10 +242,8 @@ public class SessionSiteController implements Initializable {
         loadSessionData(datePicker.getValue());
         isLoadedAll = false;
         }
-
-
-
     }
+
     @FXML
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -276,7 +303,21 @@ public class SessionSiteController implements Initializable {
         }
     }
 
+    public void processFindSessionByFilmTitle(String filmTitleFragment){
 
+        FindSessionByFilmTitleResponseDTO responseDTO = sessionService.findSessionByTitleUseCase(new FindSessionByFilmTitleRequestDTO(filmTitleFragment));
 
+        List<SessionDTO> foundSessions = responseDTO.getFoundSessions();
 
+        if (foundSessions != null) {
+            // utworzenie listy z obiektami, jeśli znaleziono pasujące
+            ObservableList<SessionDTO> foundSessionsList = FXCollections.observableArrayList(foundSessions);
+            sessionTableView.setItems(foundSessionsList);
+        } else {
+            // Nic nie znaleziono - wyświetlić alert lub wyczyścić tabelę
+            sessionTableView.setItems(FXCollections.observableArrayList());
+            // Lub:
+            // showAlert("Brak wyników", "Nie znaleziono seansu);
+        }
+    }
 }

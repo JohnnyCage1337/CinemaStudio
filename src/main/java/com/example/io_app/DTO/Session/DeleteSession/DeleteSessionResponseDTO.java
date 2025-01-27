@@ -1,4 +1,4 @@
-package com.example.io_app.DTO.Session;
+package com.example.io_app.DTO.Session.DeleteSession;
 
 public class DeleteSessionResponseDTO {
 

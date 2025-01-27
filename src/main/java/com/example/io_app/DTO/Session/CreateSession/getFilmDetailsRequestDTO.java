@@ -1,4 +1,4 @@
-package com.example.io_app.DTO.Session.CreatingSession;
+package com.example.io_app.DTO.Session.CreateSession;
 
 public class getFilmDetailsRequestDTO {
     private int filmId;

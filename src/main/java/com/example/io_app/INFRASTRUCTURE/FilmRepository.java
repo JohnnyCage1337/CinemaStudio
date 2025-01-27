@@ -164,30 +164,4 @@ public class FilmRepository {
         return film; // Zwraca znaleziony film lub null, jeśli brak wyniku
     }
 
-    public Film findById(int idToFind) {
-        String selectSql = "SELECT * FROM films WHERE id = ?;";
-
-        Film film = null;
-
-        try (Connection connection = DriverManager.getConnection(URL);
-             PreparedStatement pstmt = connection.prepareStatement(selectSql)) {
-
-            pstmt.setInt(1, idToFind);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    int id = rs.getInt("id");
-                    String title = rs.getString("title");
-                    String genre = rs.getString("genre");
-                    int duration = rs.getInt("duration");
-
-                    film = new Film(id, title, genre, duration);
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return film;
-    }
-
 }
