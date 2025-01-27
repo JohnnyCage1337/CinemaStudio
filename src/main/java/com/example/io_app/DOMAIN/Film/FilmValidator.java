@@ -15,10 +15,8 @@ public class FilmValidator {
     );
 
     // Walidacja ID
-    public static void validateId(int id) {
-        if (id <= 0) {
-            throw new IllegalArgumentException("Id musi być liczbą całkowitą > 0.");
-        }
+    public static boolean validateId(int id) {
+        return id >= 0;
     }
 
     // Sprawdzanie poprawności czasu trwania

@@ -100,8 +100,6 @@ public class CreateSessionController {
     public void findFilmByEnetredId() {
         try {
             int id = Integer.parseInt(filmIdField.getText());
-            FilmValidator.validateId(id);
-
             var dto = filmService.findFilmByIdUseCase(new getFilmDetailsRequestDTO(id));
             filmTitleField.setText(dto.getFilmTitle());
             filmDuration = dto.getFilmDuration();

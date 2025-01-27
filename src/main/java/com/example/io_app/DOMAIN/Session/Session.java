@@ -43,27 +43,7 @@ public class Session {
         this.totalSeats = totalSeats;
         this.price = price;
     }
-//    @Override
-//    public String toString() {
-//
-//        DateTimeFormatter start = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm")
-//                .withLocale(new java.util.Locale("pl", "PL"));
-//
-//        DateTimeFormatter end = DateTimeFormatter.ofPattern("HH:mm");
-//
-//        return "Seans {" +
-//                "id = " + id +
-//                ", tytuł = " + film.getTitle() +
-//                ", sala = " + roomNumber +
-//                ", początek = " + startTime.format(start) +
-//                ", koniec = " + endTime.format(end) +
-//                ", cena = " + price +
-//                ", dostępne miejsca = " + availableSeats +
-//                ", wszystkie miejsca = " + totalSeats +
-//                '}';
-//    }
 
-    // GETTERY I SETTERY
 
 
     public int getId() {

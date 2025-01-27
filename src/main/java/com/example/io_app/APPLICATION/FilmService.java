@@ -101,7 +101,9 @@ public class FilmService {
     }
 
     public getFilmDetailsResponseDTO findFilmByIdUseCase(getFilmDetailsRequestDTO requestDTO) {
-        // Pobieranie filmu z bazy danych
+        if(!FilmValidator.validateId(requestDTO.getFilmId())){
+            throw new IllegalArgumentException("ID filmu jest < 0");
+        }
         Film film = filmRepository.findById(requestDTO.getFilmId());
 
         // Sprawdzenie, czy film istnieje
@@ -119,30 +121,37 @@ public class FilmService {
     }
 
     public void updateFilmUseCase(UpdateFilmRequestDTO requestDTO) {
+        // Pobranie filmu z repozytorium
         Film film = filmRepository.findByID(requestDTO.getMovieID());
-        if(film == null) {
+        if (film == null) {
             throw new RuntimeException("Film not found");
         }
-        if(!Objects.equals(requestDTO.getFilmTitle(), requestDTO.getNewFilmTitle()) && !isFilmAlreadyExist(requestDTO.getNewFilmTitle())) {
-            try {
-                filmManager.setTitle(film, requestDTO.getNewFilmTitle());
-                filmManager.setDuration(film, requestDTO.getNewDuration());
-                filmManager.setGenre(film, requestDTO.getNewFilmGenre());
-            }
-            catch(Exception e) {
-                throw e;
-            }
 
-                if(!filmRepository.updateFilm(film)){
-                    throw new RuntimeException("Film update failed");
-                }
+        // Sprawdzenie, czy nowy tytuł różni się od starego
+        boolean isTitleChanged = !Objects.equals(requestDTO.getFilmTitle(), requestDTO.getNewFilmTitle());
 
-        }
-        else{
+        // Jeśli tytuł został zmieniony, sprawdź, czy nowy tytuł nie jest już zajęty
+        if (isTitleChanged && isFilmAlreadyExist(requestDTO.getNewFilmTitle())) {
             throw new IllegalArgumentException("Podany film jest już zapisany w bazie.");
         }
 
+        // Aktualizacja danych filmu
+        try {
+            if (isTitleChanged) {
+                filmManager.setTitle(film, requestDTO.getNewFilmTitle());
+            }
+            filmManager.setDuration(film, requestDTO.getNewDuration());
+            filmManager.setGenre(film, requestDTO.getNewFilmGenre());
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating film: " + e.getMessage(), e);
+        }
+
+        // Zapisanie zmian w repozytorium
+        if (!filmRepository.updateFilm(film)) {
+            throw new RuntimeException("Film update failed");
+        }
     }
+
 
 
 }
